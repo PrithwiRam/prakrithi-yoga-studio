@@ -3,7 +3,7 @@ import { Clock3, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm, Footer, Reveal, SiteNav, WhatsAppFab, useReveals } from "@/components/prakrithi-site";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({ meta: [{ title: "Contact — Prakrithi Yoga Studio" }, { name: "description", content: "Begin your yoga journey with Prakrithi Yoga Studio. Send an enquiry or find our studio in Kerala." }, { property: "og:title", content: "Contact — Prakrithi Yoga Studio" }, { property: "og:description", content: "Begin your yoga journey with Prakrithi Yoga Studio. Send an enquiry or find our studio in Kerala." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
+  head: () => ({ meta: [{ title: "Contact — Prakrithi Yoga Studio" }, { name: "description", content: "Begin your yoga journey with Prakrithi Yoga Studio. Send an enquiry and find your place on the mat." }, { property: "og:title", content: "Contact — Prakrithi Yoga Studio" }, { property: "og:description", content: "Begin your yoga journey with Prakrithi Yoga Studio. Send an enquiry and find your place on the mat." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: ContactPage,
 });
 
