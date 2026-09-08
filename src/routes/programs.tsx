@@ -3,7 +3,7 @@ import { ArrowRight, Clock3, MoveRight } from "lucide-react";
 import { Footer, ProgramCard, Reveal, SiteNav, WhatsAppFab, programs, useReveals } from "@/components/prakrithi-site";
 
 export const Route = createFileRoute("/programs")({
-  head: () => ({ meta: [{ title: "Programs — Prakrithi Yoga Studio" }, { name: "description", content: "Explore breath-led yoga, flow, meditation, and breathwork classes at Prakrithi Yoga Studio." }, { property: "og:title", content: "Programs — Prakrithi Yoga Studio" }, { property: "og:description", content: "Explore breath-led yoga, flow, meditation, and breathwork classes at Prakrithi Yoga Studio." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
+  head: () => ({ meta: [{ title: "Programs — Prakrithi Yoga Studio" }, { name: "description", content: "Explore breath-led yoga, flow, meditation, and breathwork classes in a warm, welcoming studio." }, { property: "og:title", content: "Programs — Prakrithi Yoga Studio" }, { property: "og:description", content: "Explore breath-led yoga, flow, meditation, and breathwork classes in a warm, welcoming studio." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: ProgramsPage,
 });
 
