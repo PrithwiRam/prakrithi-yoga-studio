@@ -5,13 +5,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import heroImage from "@/assets/yoga-studio-hero.jpg";
+import interiorImage from "@/assets/yoga-studio-interior.jpg";
+import practiceImage from "@/assets/yoga-practice.jpg";
+import communityImage from "@/assets/yoga-community.jpg";
+import detailImage from "@/assets/yoga-detail.jpg";
+import journalImage from "@/assets/yoga-journal.jpg";
 
 export const programs = [
-  { id: "beginners-yoga", index: "01", category: "YOGA", title: "Beginners Yoga", shortDescription: "Build confidence, mobility, and foundational strength.", longDescription: "A welcoming space for those new to yoga. Learn the fundamentals of alignment, breathing, and mindful movement at your own pace.", duration: "60 min", level: "Beginner", schedule: "Mon, Wed, Fri — 7:00 AM", imagePosition: "center 55%" },
-  { id: "morning-flow", index: "02", category: "YOGA FLOW", title: "Morning Flow", shortDescription: "Energise your body and awaken your mind with flowing sequences.", longDescription: "Start your day with intention. This dynamic vinyasa-inspired class links breath to movement to set a positive tone for the day.", duration: "75 min", level: "All Levels", schedule: "Daily — 6:00 AM", imagePosition: "70% center" },
-  { id: "breathwork-basics", index: "03", category: "BREATHING", title: "Breathwork Basics", shortDescription: "Unlock the power of your breath for calm and focus.", longDescription: "Pranayama and breathwork techniques to manage stress, improve focus, and deepen your yoga practice. No prior experience needed.", duration: "45 min", level: "Beginner", schedule: "Tue, Thu — 8:00 AM", imagePosition: "16% center" },
-  { id: "finding-stillness", index: "04", category: "MEDITATION", title: "Finding Stillness", shortDescription: "A guided meditation practice to quiet the mind.", longDescription: "Seated and walking meditation techniques drawn from traditional Indian practices. Ideal for stress relief, emotional balance, and mental clarity.", duration: "30 min", level: "All Levels", schedule: "Daily — 7:00 PM", imagePosition: "45% 28%" },
-  { id: "studio-tour", index: "05", category: "STUDIO", title: "Studio Tour", shortDescription: "Take a look inside Prakrithi Yoga Studio.", longDescription: "A guided video walkthrough of our peaceful studio space — our mats, our natural lighting, and the energy you'll feel the moment you walk in.", duration: "Video", level: "Everyone", schedule: "Explore anytime", imagePosition: "92% center", isVideo: true },
+  { id: "beginners-yoga", index: "01", category: "YOGA", title: "Beginners Yoga", shortDescription: "Build confidence, mobility, and foundational strength.", longDescription: "A welcoming space for those new to yoga. Learn the fundamentals of alignment, breathing, and mindful movement at your own pace.", duration: "60 min", level: "Beginner", schedule: "Mon, Wed, Fri — 7:00 AM", image: practiceImage, imagePosition: "center center" },
+  { id: "morning-flow", index: "02", category: "YOGA FLOW", title: "Morning Flow", shortDescription: "Energise your body and awaken your mind with flowing sequences.", longDescription: "Start your day with intention. This dynamic vinyasa-inspired class links breath to movement to set a positive tone for the day.", duration: "75 min", level: "All Levels", schedule: "Daily — 6:00 AM", image: communityImage, imagePosition: "center center" },
+  { id: "breathwork-basics", index: "03", category: "BREATHING", title: "Breathwork Basics", shortDescription: "Unlock the power of your breath for calm and focus.", longDescription: "Pranayama and breathwork techniques to manage stress, improve focus, and deepen your yoga practice. No prior experience needed.", duration: "45 min", level: "Beginner", schedule: "Tue, Thu — 8:00 AM", image: detailImage, imagePosition: "center center" },
+  { id: "finding-stillness", index: "04", category: "MEDITATION", title: "Finding Stillness", shortDescription: "A guided meditation practice to quiet the mind.", longDescription: "Seated and walking meditation techniques drawn from traditional Indian practices. Ideal for stress relief, emotional balance, and mental clarity.", duration: "30 min", level: "All Levels", schedule: "Daily — 7:00 PM", image: interiorImage, imagePosition: "center center" },
+  { id: "studio-tour", index: "05", category: "STUDIO", title: "Studio Tour", shortDescription: "Take a look inside Prakrithi Yoga Studio.", longDescription: "A guided video walkthrough of our peaceful studio space — our mats, our natural lighting, and the energy you'll feel the moment you walk in.", duration: "Video", level: "Everyone", schedule: "Explore anytime", image: interiorImage, imagePosition: "center center", isVideo: true },
 ];
 
 const testimonials = [
@@ -21,9 +26,9 @@ const testimonials = [
 ];
 
 export const journalPosts = [
-  { category: "MINDFULNESS", readTime: "5 min read", title: "5 Minutes to Start Your Morning", excerpt: "A short, powerful routine you can do before your feet hit the floor." },
-  { category: "PRACTICE", readTime: "5 min read", title: "How Breath Shapes Your Movement", excerpt: "The often-overlooked connection between pranayama and physical yoga." },
-  { category: "LIFESTYLE", readTime: "4 min read", title: "Creating a Mindful Evening Routine", excerpt: "How to wind down with intention and wake up restored." },
+  { category: "MINDFULNESS", readTime: "5 min read", title: "5 Minutes to Start Your Morning", excerpt: "A short, powerful routine you can do before your feet hit the floor.", image: journalImage },
+  { category: "PRACTICE", readTime: "5 min read", title: "How Breath Shapes Your Movement", excerpt: "The often-overlooked connection between pranayama and physical yoga.", image: detailImage },
+  { category: "LIFESTYLE", readTime: "4 min read", title: "Creating a Mindful Evening Routine", excerpt: "How to wind down with intention and wake up restored.", image: interiorImage },
 ];
 
 export const faqItems = [
