@@ -173,21 +173,68 @@
     letter-spacing: 0;
   }
 
-  html { scroll-behavior: smooth; }
-  ::selection { background: var(--color-primary); color: var(--color-primary-foreground); }
+  html {
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
 }
 
-@utility page-container { width: min(100% - 3rem, 1280px); margin-inline: auto; }
-@utility display-serif { font-family: var(--font-serif); font-weight: 400; letter-spacing: 0; }
-@utility eyebrow { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
-@utility reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-@utility reveal-visible { opacity: 1; transform: translateY(0); }
-@utility image-reveal { opacity: 0; transform: scale(0.97); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
-@utility image-reveal-visible { opacity: 1; transform: scale(1); }
+@utility page-container {
+  width: min(100% - 3rem, 1280px);
+  margin-inline: auto;
+}
+@utility display-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+@utility eyebrow {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+@utility reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@utility reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@utility image-reveal {
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@utility image-reveal-visible {
+  opacity: 1;
+  transform: scale(1);
+}
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-@media (min-width: 768px) { .page-container { width: min(100% - 5rem, 1280px); } }
+@media (min-width: 768px) {
+  .page-container {
+    width: min(100% - 5rem, 1280px);
+  }
+}
