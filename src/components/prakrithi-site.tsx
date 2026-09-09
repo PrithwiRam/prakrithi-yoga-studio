@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -379,13 +379,14 @@ export function BreatheWidget() {
   const [phase, setPhase] = useState(0);
   const phases = mode === "calm" ? ["INHALE", "HOLD", "EXHALE"] : ["INHALE", "HOLD", "EXHALE"];
   const durations = mode === "calm" ? [4000, 2000, 6000] : [3000, 2000, 3000];
+  const phaseDuration = durations[phase] ?? durations[0];
   useEffect(() => {
     const timer = window.setTimeout(
-      () => setPhase((current) => (current + 1) % phases.length),
-      durations[phase],
+      () => setPhase((current) => (current + 1) % 3),
+      phaseDuration,
     );
     return () => window.clearTimeout(timer);
-  }, [phase, mode, durations]);
+  }, [phase, phaseDuration]);
   return (
     <div className="relative flex flex-col items-center">
       <div

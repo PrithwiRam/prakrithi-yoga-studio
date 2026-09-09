@@ -66,16 +66,8 @@ function ProgramsPage() {
             <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {programs.map((program) => (
                 <Reveal key={program.id} image>
-                  <Link
-                    to="/contact"
-                    className="group block overflow-hidden border border-border bg-linen"
-                  >
+                  <article className="group block overflow-hidden border border-border bg-linen">
                     <div className="relative aspect-[1.2] overflow-hidden">
-                      <img
-                        src={program.id === "studio-tour" ? undefined : undefined}
-                        alt=""
-                        className="hidden"
-                      />
                       <ProgramCard program={program} />
                     </div>
                     <div className="p-6">
@@ -97,7 +89,7 @@ function ProgramsPage() {
                         Enquire about this class <ArrowRight className="size-3.5" />
                       </span>
                     </div>
-                  </Link>
+                  </article>
                 </Reveal>
               ))}
             </div>
