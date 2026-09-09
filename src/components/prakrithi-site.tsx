@@ -10,6 +10,7 @@ import practiceImage from "@/assets/yoga-practice.jpg";
 import communityImage from "@/assets/yoga-community.jpg";
 import detailImage from "@/assets/yoga-detail.jpg";
 import journalImage from "@/assets/yoga-journal.jpg";
+import brandLogo from "@/assets/prakrithi-full-logo.jpg.asset.json";
 
 export const programs = [
   { id: "beginners-yoga", index: "01", category: "YOGA", title: "Beginners Yoga", shortDescription: "Build confidence, mobility, and foundational strength.", longDescription: "A welcoming space for those new to yoga. Learn the fundamentals of alignment, breathing, and mindful movement at your own pace.", duration: "60 min", level: "Beginner", schedule: "Mon, Wed, Fri — 7:00 AM", image: practiceImage, imagePosition: "center center" },
@@ -59,10 +60,9 @@ export function SiteNav() {
   const close = () => setOpen(false);
   return <>
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled || open ? "border-b border-border/70 bg-background/95 shadow-sm backdrop-blur-md" : "bg-transparent"}`}>
-      <div className="page-container flex h-[76px] items-center justify-between gap-6">
-        <Link to="/" className="group flex items-center gap-3" onClick={close}>
-          <span className="flex size-9 items-center justify-center rounded-full border border-primary text-primary"><span className="display-serif text-xl italic">p</span></span>
-          <span className="eyebrow text-foreground">Prakrithi</span>
+      <div className="page-container flex h-[88px] items-center justify-between gap-6">
+        <Link to="/" className="group flex shrink-0 items-center" onClick={close} aria-label="Prakrithi home">
+          <img src={brandLogo.url} alt="Prakrithi Voca and Nutrition — Wellness Begins Within" width={584} height={571} className="h-16 w-auto object-contain md:h-[72px]" />
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
           <Link to="/" className="eyebrow text-foreground/70 transition-colors hover:text-primary">Home</Link>
@@ -75,12 +75,12 @@ export function SiteNav() {
         </div>
       </div>
     </header>
-    {open && <div className="fixed inset-0 z-40 flex flex-col bg-cream px-6 pb-12 pt-28 md:hidden"><nav className="flex flex-1 flex-col gap-6"><Link to="/" onClick={close} className="display-serif text-5xl text-foreground">Home</Link><Link to="/programs" onClick={close} className="display-serif text-5xl text-foreground">Programs</Link><Link to="/contact" onClick={close} className="display-serif text-5xl text-foreground">Contact</Link></nav><p className="eyebrow text-warm-gray">Breathe. Move. Become.</p></div>}
+    {open && <div className="fixed inset-0 z-40 flex flex-col bg-cream px-6 pb-12 pt-32 md:hidden"><nav className="flex flex-1 flex-col gap-6"><Link to="/" onClick={close} className="display-serif text-5xl text-foreground">Home</Link><Link to="/programs" onClick={close} className="display-serif text-5xl text-foreground">Programs</Link><Link to="/contact" onClick={close} className="display-serif text-5xl text-foreground">Contact</Link></nav><p className="eyebrow text-warm-gray">Breathe. Move. Become.</p></div>}
   </>;
 }
 
 export function Footer() {
-  return <footer className="bg-charcoal-2 py-16 text-background md:py-20"><div className="page-container"><div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8"><div><div className="flex items-center gap-3"><span className="flex size-9 items-center justify-center rounded-full border border-primary text-primary"><span className="display-serif text-xl italic">p</span></span><span className="eyebrow">Prakrithi</span></div><p className="mt-6 max-w-xs display-serif text-2xl text-background/75">Breathe. Move. Become.</p></div><div><p className="eyebrow text-primary">Navigation</p><div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/60"><Link to="/" className="hover:text-primary">Home</Link><Link to="/programs" className="hover:text-primary">Programs</Link><Link to="/contact" className="hover:text-primary">Contact</Link></div></div><div><p className="eyebrow text-primary">Social</p><div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/60"><a href="https://instagram.com/prakrithiyoga" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-primary"><Instagram className="size-4" /> Instagram</a><a href="https://youtube.com/@prakrithiyoga" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-primary"><Youtube className="size-4" /> YouTube</a><a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer" className="hover:text-primary">WhatsApp</a></div></div></div><div className="mt-16 flex flex-col gap-4 border-t border-background/15 pt-6 text-[0.68rem] uppercase tracking-[0.12em] text-background/40 md:flex-row md:items-center md:justify-between"><span>© 2026 Prakrithi Yoga Studio</span><span>Made for presence</span></div></div></footer>;
+  return <footer className="bg-charcoal-2 py-16 text-background md:py-20"><div className="page-container"><div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8"><div><img src={brandLogo.url} alt="Prakrithi Voca and Nutrition — Wellness Begins Within" width={584} height={571} loading="lazy" className="h-36 w-auto object-contain object-left" /><p className="mt-5 max-w-xs display-serif text-2xl text-background/75">Breathe. Move. Become.</p></div><div><p className="eyebrow text-primary">Navigation</p><div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/60"><Link to="/" className="hover:text-primary">Home</Link><Link to="/programs" className="hover:text-primary">Programs</Link><Link to="/contact" className="hover:text-primary">Contact</Link></div></div><div><p className="eyebrow text-primary">Social</p><div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/60"><a href="https://instagram.com/prakrithiyoga" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-primary"><Instagram className="size-4" /> Instagram</a><a href="https://youtube.com/@prakrithiyoga" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-primary"><Youtube className="size-4" /> YouTube</a><a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer" className="hover:text-primary">WhatsApp</a></div></div></div><div className="mt-16 flex flex-col gap-4 border-t border-background/15 pt-6 text-[0.68rem] uppercase tracking-[0.12em] text-background/40 md:flex-row md:items-center md:justify-between"><span>© 2026 Prakrithi Yoga Studio</span><span>Made for presence</span></div></div></footer>;
 }
 
 export function WhatsAppFab() { return <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer" aria-label="Chat with Prakrithi on WhatsApp" className="fixed bottom-5 right-5 z-40 flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-105"><span className="text-lg font-semibold">⌁</span></a>; }
