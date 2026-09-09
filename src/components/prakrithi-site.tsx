@@ -381,10 +381,7 @@ export function BreatheWidget() {
   const durations = mode === "calm" ? [4000, 2000, 6000] : [3000, 2000, 3000];
   const phaseDuration = durations[phase] ?? durations[0];
   useEffect(() => {
-    const timer = window.setTimeout(
-      () => setPhase((current) => (current + 1) % 3),
-      phaseDuration,
-    );
+    const timer = window.setTimeout(() => setPhase((current) => (current + 1) % 3), phaseDuration);
     return () => window.clearTimeout(timer);
   }, [phase, phaseDuration]);
   return (
