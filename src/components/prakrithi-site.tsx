@@ -22,7 +22,7 @@ import practiceImage from "@/assets/yoga-practice.jpg";
 import communityImage from "@/assets/yoga-community.jpg";
 import detailImage from "@/assets/yoga-detail.jpg";
 import journalImage from "@/assets/yoga-journal.jpg";
-import brandLogo from "@/assets/prakrithi-full-logo.jpg.asset.json";
+import brandLogo from "@/assets/prakrithi-circle-logo.png";
 
 export const programs = [
   {
@@ -221,11 +221,11 @@ export function SiteNav() {
             aria-label="Prakrithi home"
           >
             <img
-              src={brandLogo.url}
+              src={brandLogo}
               alt="Prakrithi Voca and Nutrition — Wellness Begins Within"
               width={584}
               height={571}
-              className="h-16 w-auto object-contain md:h-[72px]"
+              className="size-16 rounded-full border border-primary/30 object-cover shadow-sm md:size-[72px]"
             />
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
@@ -296,12 +296,12 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8">
           <div>
             <img
-              src={brandLogo.url}
+              src={brandLogo}
               alt="Prakrithi Voca and Nutrition — Wellness Begins Within"
               width={584}
               height={571}
               loading="lazy"
-              className="h-36 w-auto object-contain object-left"
+              className="size-36 rounded-full border border-background/20 object-cover shadow-md"
             />
             <p className="mt-5 max-w-xs display-serif text-2xl text-background/75">
               Breathe. Move. Become.
