@@ -8,13 +8,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A clay-and-olive yoga sanctuary for breath-led movement, stillness, and community.",
+          "Begin your yoga and wellness journey with personalised and online sessions from Prakrithi in Coimbatore.",
       },
       { property: "og:title", content: "Prakrithi Yoga Studio — Breathe. Move. Become." },
       {
         property: "og:description",
         content:
-          "A clay-and-olive yoga sanctuary for breath-led movement, stillness, and community.",
+          "Begin your yoga and wellness journey with personalised and online sessions from Prakrithi in Coimbatore.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock3, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Clock3, Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
 import {
   ContactForm,
   Footer,
@@ -64,8 +64,8 @@ function ContactPage() {
                 <div className="flex items-start gap-4">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
                   <div>
-                    <p className="text-foreground">123 Wellness Avenue</p>
-                    <p className="mt-1">Your City, Kerala 000000</p>
+                    <p className="text-foreground">Coimbatore</p>
+                    <p className="mt-1">Tamil Nadu, India</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -76,20 +76,16 @@ function ContactPage() {
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="size-4 shrink-0 text-primary" />
-                  <a href="tel:+91XXXXXXXXXX" className="hover:text-primary">
-                    +91 XXXXX XXXXX
+                  <a href="tel:+919629592292" className="hover:text-primary">
+                    +91 96295 92292
                   </a>
                 </div>
                 <div className="flex items-start gap-4">
                   <Clock3 className="mt-0.5 size-4 shrink-0 text-primary" />
                   <div>
                     <p className="text-foreground">
-                      Mon – Fri{" "}
-                      <span className="ml-4 text-muted-foreground">6:00 AM – 9:00 PM</span>
-                    </p>
-                    <p className="mt-2 text-foreground">
-                      Sat – Sun{" "}
-                      <span className="ml-3 text-muted-foreground">7:00 AM – 6:00 PM</span>
+                      Monday – Friday{" "}
+                      <span className="ml-4 text-muted-foreground">5:00 AM – 10:00 PM</span>
                     </p>
                   </div>
                 </div>
@@ -97,12 +93,30 @@ function ContactPage() {
               <div className="mt-12 flex gap-4">
                 <a
                   aria-label="Prakrithi Instagram"
-                  href="https://instagram.com/prakrithiyoga"
+                   href="https://www.instagram.com/prakrithi.yogaandnutrition?stkn=MWh6Y3M1NDJhdDI4Zg=="
                   target="_blank"
                   rel="noreferrer"
                   className="flex size-10 items-center justify-center rounded-full border border-border text-foreground hover:border-primary hover:text-primary"
                 >
                   <Instagram className="size-4" />
+                </a>
+                <a
+                  aria-label="Prakrithi Facebook"
+                  href="https://www.facebook.com/share/19YZHt1G93/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex size-10 items-center justify-center rounded-full border border-border text-foreground hover:border-primary hover:text-primary"
+                >
+                  <Facebook className="size-4" />
+                </a>
+                <a
+                  aria-label="Prakrithi YouTube"
+                  href="https://youtube.com/@prakrithi.yogaandnutrition?si=5evFyn7luyDYWWcT"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex size-10 items-center justify-center rounded-full border border-border text-foreground hover:border-primary hover:text-primary"
+                >
+                  <Youtube className="size-4" />
                 </a>
               </div>
             </Reveal>
@@ -125,7 +139,7 @@ function ContactPage() {
                 Message us on <em className="text-primary">WhatsApp.</em>
               </h2>
               <a
-                href="https://wa.me/91XXXXXXXXXX"
+                 href="https://wa.me/919629592292"
                 target="_blank"
                 rel="noreferrer"
                 className="mt-8 inline-flex rounded-full border border-background/30 px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] text-background hover:border-primary hover:text-primary"

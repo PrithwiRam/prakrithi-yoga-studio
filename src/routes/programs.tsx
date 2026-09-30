@@ -17,13 +17,13 @@ export const Route = createFileRoute("/programs")({
       {
         name: "description",
         content:
-          "Explore breath-led yoga, flow, meditation, and breathwork classes in a warm, welcoming studio.",
+          "Explore beginner yoga, online women’s group classes, breathwork, and personal yoga care in Coimbatore.",
       },
       { property: "og:title", content: "Programs — Prakrithi Yoga Studio" },
       {
         property: "og:description",
         content:
-          "Explore breath-led yoga, flow, meditation, and breathwork classes in a warm, welcoming studio.",
+          "Explore beginner yoga, online women’s group classes, breathwork, and personal yoga care in Coimbatore.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

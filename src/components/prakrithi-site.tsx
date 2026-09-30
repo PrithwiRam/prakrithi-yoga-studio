@@ -6,9 +6,9 @@ import {
   Check,
   ChevronDown,
   ChevronUp,
+  Facebook,
   Instagram,
   Menu,
-  Play,
   Plus,
   X,
   Youtube,
@@ -18,83 +18,71 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import heroImage from "@/assets/yoga-studio-hero.jpg";
 import interiorImage from "@/assets/yoga-studio-interior.jpg";
-import practiceImage from "@/assets/yoga-practice.jpg";
 import communityImage from "@/assets/yoga-community.jpg";
 import detailImage from "@/assets/yoga-detail.jpg";
 import journalImage from "@/assets/yoga-journal.jpg";
-import brandLogo from "@/assets/prakrithi-circle-logo.png";
+import brandLogo from "@/assets/prakrithi-green-logo.jpeg.asset.json";
+import beginnerYogaImage from "@/assets/online-trial-class.jpeg.asset.json";
+import womensGroupImage from "@/assets/womens-group-yoga.jpeg.asset.json";
+import breathworkImage from "@/assets/prakrithi-transformation.jpeg.asset.json";
+import personalYogaImage from "@/assets/personal-yoga-care.jpeg.asset.json";
 
 export const programs = [
   {
     id: "beginners-yoga",
     index: "01",
     category: "YOGA",
-    title: "Beginners Yoga",
+    title: "Beginner's Yoga",
     shortDescription: "Build confidence, mobility, and foundational strength.",
     longDescription:
       "A welcoming space for those new to yoga. Learn the fundamentals of alignment, breathing, and mindful movement at your own pace.",
-    duration: "60 min",
+    duration: "45 min",
     level: "Beginner",
     schedule: "Mon, Wed, Fri — 7:00 AM",
-    image: practiceImage,
+    image: beginnerYogaImage.url,
     imagePosition: "center center",
   },
   {
-    id: "morning-flow",
+    id: "womens-morning-group",
     index: "02",
-    category: "YOGA FLOW",
-    title: "Morning Flow",
-    shortDescription: "Energise your body and awaken your mind with flowing sequences.",
+    category: "ONLINE YOGA",
+    title: "Morning Group Class for Women",
+    shortDescription: "A supportive online morning practice designed especially for women.",
     longDescription:
-      "Start your day with intention. This dynamic vinyasa-inspired class links breath to movement to set a positive tone for the day.",
-    duration: "75 min",
+      "Build strength, mobility, and calm in a welcoming women-only group class from the comfort of home.",
+    duration: "60 min",
     level: "All Levels",
     schedule: "Daily — 6:00 AM",
-    image: communityImage,
+    image: womensGroupImage.url,
     imagePosition: "center center",
   },
   {
     id: "breathwork-basics",
     index: "03",
     category: "BREATHING",
-    title: "Breathwork Basics",
+    title: "Basic Breathwork",
     shortDescription: "Unlock the power of your breath for calm and focus.",
     longDescription:
       "Pranayama and breathwork techniques to manage stress, improve focus, and deepen your yoga practice. No prior experience needed.",
-    duration: "45 min",
+    duration: "30 min",
     level: "Beginner",
     schedule: "Tue, Thu — 8:00 AM",
-    image: detailImage,
+    image: breathworkImage.url,
     imagePosition: "center center",
   },
   {
-    id: "finding-stillness",
+    id: "personal-care-yoga",
     index: "04",
-    category: "MEDITATION",
-    title: "Finding Stillness",
-    shortDescription: "A guided meditation practice to quiet the mind.",
+    category: "PERSONAL YOGA",
+    title: "One-on-One Personal Care Yoga",
+    shortDescription: "Personal guidance shaped around your body, goals, and wellbeing.",
     longDescription:
-      "Seated and walking meditation techniques drawn from traditional Indian practices. Ideal for stress relief, emotional balance, and mental clarity.",
-    duration: "30 min",
-    level: "All Levels",
-    schedule: "Daily — 7:00 PM",
-    image: interiorImage,
+      "A personalised yoga session with focused support, available both online and offline to suit your needs and schedule.",
+    duration: "Online & offline",
+    level: "Personalised",
+    schedule: "By appointment",
+    image: personalYogaImage.url,
     imagePosition: "center center",
-  },
-  {
-    id: "studio-tour",
-    index: "05",
-    category: "STUDIO",
-    title: "Studio Tour",
-    shortDescription: "Take a look inside Prakrithi Yoga Studio.",
-    longDescription:
-      "A guided video walkthrough of our peaceful studio space — our mats, our natural lighting, and the energy you'll feel the moment you walk in.",
-    duration: "Video",
-    level: "Everyone",
-    schedule: "Explore anytime",
-    image: interiorImage,
-    imagePosition: "center center",
-    isVideo: true,
   },
 ];
 
@@ -221,11 +209,11 @@ export function SiteNav() {
             aria-label="Prakrithi home"
           >
             <img
-              src={brandLogo}
-              alt="Prakrithi Voca and Nutrition — Wellness Begins Within"
-              width={584}
-              height={571}
-              className="size-16 rounded-full border border-primary/30 object-cover shadow-sm md:size-[72px]"
+               src={brandLogo.url}
+               alt="Prakrithi Yoga and Nutrition — Wellness Begins Within"
+               width={742}
+               height={1024}
+               className="h-[72px] w-[54px] object-contain md:h-20 md:w-[58px]"
             />
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
@@ -254,7 +242,7 @@ export function SiteNav() {
               className="hidden h-10 rounded-full bg-charcoal px-5 text-[0.68rem] font-medium uppercase tracking-[0.14em] text-background hover:bg-sage-dark md:inline-flex"
             >
               <Link to="/contact">
-                Join a Class <ArrowRight className="size-3.5" />
+                 Book a Session <ArrowRight className="size-3.5" />
               </Link>
             </Button>
             <Button
@@ -296,15 +284,15 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8">
           <div>
             <img
-              src={brandLogo}
-              alt="Prakrithi Voca and Nutrition — Wellness Begins Within"
-              width={584}
-              height={571}
+               src={brandLogo.url}
+               alt="Prakrithi Yoga and Nutrition — Wellness Begins Within"
+               width={742}
+               height={1024}
               loading="lazy"
-              className="size-36 rounded-full border border-background/20 object-cover shadow-md"
+               className="h-52 w-40 object-contain"
             />
-            <p className="mt-5 max-w-xs display-serif text-2xl text-background/75">
-              Breathe. Move. Become.
+             <p className="mt-4 max-w-xs text-sm uppercase text-background/75">
+               Wellness Begins Within.
             </p>
           </div>
           <div>
@@ -325,7 +313,7 @@ export function Footer() {
             <p className="eyebrow text-primary">Social</p>
             <div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/60">
               <a
-                href="https://instagram.com/prakrithiyoga"
+                 href="https://www.instagram.com/prakrithi.yogaandnutrition?stkn=MWh6Y3M1NDJhdDI4Zg=="
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 hover:text-primary"
@@ -333,7 +321,15 @@ export function Footer() {
                 <Instagram className="size-4" /> Instagram
               </a>
               <a
-                href="https://youtube.com/@prakrithiyoga"
+                href="https://www.facebook.com/share/19YZHt1G93/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 hover:text-primary"
+              >
+                <Facebook className="size-4" /> Facebook
+              </a>
+              <a
+                 href="https://youtube.com/@prakrithi.yogaandnutrition?si=5evFyn7luyDYWWcT"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 hover:text-primary"
@@ -341,7 +337,7 @@ export function Footer() {
                 <Youtube className="size-4" /> YouTube
               </a>
               <a
-                href="https://wa.me/91XXXXXXXXXX"
+                 href="https://wa.me/919629592292"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-primary"
@@ -363,7 +359,7 @@ export function Footer() {
 export function WhatsAppFab() {
   return (
     <a
-      href="https://wa.me/91XXXXXXXXXX"
+       href="https://wa.me/919629592292"
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with Prakrithi on WhatsApp"
@@ -441,8 +437,8 @@ export function ProgramList() {
           <img
             src={program.image}
             alt={`${program.title} at Prakrithi Yoga Studio`}
-            width={program.id === "breathwork-basics" ? 1008 : 1408}
-            height={program.id === "breathwork-basics" ? 1200 : 1008}
+             width={928}
+             height={1152}
             loading="lazy"
             className="h-32 w-full object-cover md:h-24"
             style={{ objectPosition: program.imagePosition }}
@@ -629,18 +625,10 @@ export function ProgramCard({ program }: { program: (typeof programs)[number] })
         src={program.image}
         alt={`${program.title} at Prakrithi Yoga Studio`}
         width={
-          program.id === "breathwork-basics"
-            ? 1008
-            : program.id === "studio-tour" || program.id === "finding-stillness"
-              ? 1200
-              : 1408
+           928
         }
         height={
-          program.id === "breathwork-basics"
-            ? 1200
-            : program.id === "studio-tour" || program.id === "finding-stillness"
-              ? 1500
-              : 1008
+           1152
         }
         loading="lazy"
         className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -651,11 +639,6 @@ export function ProgramCard({ program }: { program: (typeof programs)[number] })
         <span className="rounded-full bg-primary px-3 py-1 text-[0.62rem] font-medium tracking-[0.12em] text-primary-foreground">
           {program.category}
         </span>
-        {program.isVideo && (
-          <span className="flex size-9 items-center justify-center rounded-full bg-background text-foreground">
-            <Play className="ml-0.5 size-3 fill-current" />
-          </span>
-        )}
       </div>
       <div className="absolute inset-x-5 bottom-5">
         <h3 className="display-serif text-3xl text-background">{program.title}</h3>
@@ -689,10 +672,10 @@ export function HomeSections() {
           <div className="page-container relative grid w-full items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
             <Reveal className="max-w-xl">
               <p className="eyebrow text-primary">
-                Prakrithi Yoga Studio <span className="mx-2 text-warm-gray">/</span> Kerala
+                 Prakrithi Yoga Studio <span className="mx-2 text-warm-gray">/</span> Coimbatore
               </p>
               <h1 className="mt-5 display-serif text-[clamp(3.7rem,8vw,7.5rem)] leading-[0.83] text-foreground">
-                It all begins with <em className="text-primary">breath.</em>
+                 Your journey to <em className="text-primary">wellness</em> begins here.
               </h1>
               <p className="mt-7 max-w-md text-base leading-7 text-muted-foreground">
                 Before we move, before we stretch, we find stillness. Take a moment to sync with the
@@ -987,7 +970,7 @@ export function HomeSections() {
                 to="/contact"
                 className="mt-9 inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-sage-dark"
               >
-                Join a class <ArrowRight className="size-4" />
+                 Book a session <ArrowRight className="size-4" />
               </Link>
             </Reveal>
           </div>
