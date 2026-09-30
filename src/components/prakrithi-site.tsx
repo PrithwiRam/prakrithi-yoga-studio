@@ -91,19 +91,19 @@ const testimonials = [
     quote:
       "More than just a place to work out. It's a sanctuary where you learn to be present in your own life again.",
     author: "Priya R.",
-    program: "Morning Flow",
+    program: "Morning Group Class for Women",
   },
   {
     quote:
       "Prakrithi changed my relationship with stress. The breathwork sessions alone are worth it.",
     author: "Arun M.",
-    program: "Breathwork Basics",
+    program: "Basic Breathwork",
   },
   {
     quote:
       "I came in a complete beginner and left every class feeling like I'd known yoga my whole life.",
     author: "Lakshmi V.",
-    program: "Beginners Yoga",
+    program: "Beginner's Yoga",
   },
 ];
 
@@ -134,7 +134,7 @@ export const journalPosts = [
 export const faqItems = [
   [
     "Do I need prior yoga experience?",
-    "Absolutely not! We welcome complete beginners. Our Beginners Yoga class is specifically designed for those starting from scratch.",
+    "Absolutely not! We welcome complete beginners. Our Beginner's Yoga class is specifically designed for those starting from scratch.",
   ],
   [
     "Do you offer trial classes?",

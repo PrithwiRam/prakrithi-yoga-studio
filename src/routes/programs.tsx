@@ -67,7 +67,7 @@ function ProgramsPage() {
               {programs.map((program) => (
                 <Reveal key={program.id} image>
                   <article className="group block overflow-hidden border border-border bg-linen">
-                    <div className="relative aspect-[1.2] overflow-hidden">
+                    <div className="relative aspect-[0.82] overflow-hidden">
                       <ProgramCard program={program} />
                     </div>
                     <div className="p-6">
