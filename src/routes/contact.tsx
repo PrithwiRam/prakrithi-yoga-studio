@@ -93,7 +93,7 @@ function ContactPage() {
               <div className="mt-12 flex gap-4">
                 <a
                   aria-label="Prakrithi Instagram"
-                   href="https://www.instagram.com/prakrithi.yogaandnutrition?stkn=MWh6Y3M1NDJhdDI4Zg=="
+                  href="https://www.instagram.com/prakrithi.yogaandnutrition?stkn=MWh6Y3M1NDJhdDI4Zg=="
                   target="_blank"
                   rel="noreferrer"
                   className="flex size-10 items-center justify-center rounded-full border border-border text-foreground hover:border-primary hover:text-primary"
@@ -139,7 +139,7 @@ function ContactPage() {
                 Message us on <em className="text-primary">WhatsApp.</em>
               </h2>
               <a
-                 href="https://wa.me/919629592292"
+                href="https://wa.me/919629592292"
                 target="_blank"
                 rel="noreferrer"
                 className="mt-8 inline-flex rounded-full border border-background/30 px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] text-background hover:border-primary hover:text-primary"

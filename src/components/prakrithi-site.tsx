@@ -209,11 +209,11 @@ export function SiteNav() {
             aria-label="Prakrithi home"
           >
             <img
-               src={brandLogo.url}
-               alt="Prakrithi Yoga and Nutrition — Wellness Begins Within"
-               width={742}
-               height={1024}
-               className="h-[72px] w-[54px] object-contain md:h-20 md:w-[58px]"
+              src={brandLogo.url}
+              alt="Prakrithi Yoga and Nutrition — Wellness Begins Within"
+              width={742}
+              height={1024}
+              className="h-[72px] w-[54px] object-contain md:h-20 md:w-[58px]"
             />
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
@@ -242,7 +242,7 @@ export function SiteNav() {
               className="hidden h-10 rounded-full bg-charcoal px-5 text-[0.68rem] font-medium uppercase tracking-[0.14em] text-background hover:bg-sage-dark md:inline-flex"
             >
               <Link to="/contact">
-                 Book a Session <ArrowRight className="size-3.5" />
+                Book a Session <ArrowRight className="size-3.5" />
               </Link>
             </Button>
             <Button
@@ -284,15 +284,15 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8">
           <div>
             <img
-               src={brandLogo.url}
-               alt="Prakrithi Yoga and Nutrition — Wellness Begins Within"
-               width={742}
-               height={1024}
+              src={brandLogo.url}
+              alt="Prakrithi Yoga and Nutrition — Wellness Begins Within"
+              width={742}
+              height={1024}
               loading="lazy"
-               className="h-52 w-40 object-contain"
+              className="h-52 w-40 object-contain"
             />
-             <p className="mt-4 max-w-xs text-sm uppercase text-background/75">
-               Wellness Begins Within.
+            <p className="mt-4 max-w-xs text-sm uppercase text-background/75">
+              Wellness Begins Within.
             </p>
           </div>
           <div>
@@ -313,7 +313,7 @@ export function Footer() {
             <p className="eyebrow text-primary">Social</p>
             <div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/60">
               <a
-                 href="https://www.instagram.com/prakrithi.yogaandnutrition?stkn=MWh6Y3M1NDJhdDI4Zg=="
+                href="https://www.instagram.com/prakrithi.yogaandnutrition?stkn=MWh6Y3M1NDJhdDI4Zg=="
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 hover:text-primary"
@@ -329,7 +329,7 @@ export function Footer() {
                 <Facebook className="size-4" /> Facebook
               </a>
               <a
-                 href="https://youtube.com/@prakrithi.yogaandnutrition?si=5evFyn7luyDYWWcT"
+                href="https://youtube.com/@prakrithi.yogaandnutrition?si=5evFyn7luyDYWWcT"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 hover:text-primary"
@@ -337,7 +337,7 @@ export function Footer() {
                 <Youtube className="size-4" /> YouTube
               </a>
               <a
-                 href="https://wa.me/919629592292"
+                href="https://wa.me/919629592292"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-primary"
@@ -359,7 +359,7 @@ export function Footer() {
 export function WhatsAppFab() {
   return (
     <a
-       href="https://wa.me/919629592292"
+      href="https://wa.me/919629592292"
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with Prakrithi on WhatsApp"
@@ -437,8 +437,8 @@ export function ProgramList() {
           <img
             src={program.image}
             alt={`${program.title} at Prakrithi Yoga Studio`}
-             width={928}
-             height={1152}
+            width={928}
+            height={1152}
             loading="lazy"
             className="h-32 w-full object-cover md:h-24"
             style={{ objectPosition: program.imagePosition }}
@@ -624,12 +624,8 @@ export function ProgramCard({ program }: { program: (typeof programs)[number] })
       <img
         src={program.image}
         alt={`${program.title} at Prakrithi Yoga Studio`}
-        width={
-           928
-        }
-        height={
-           1152
-        }
+        width={928}
+        height={1152}
         loading="lazy"
         className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
         style={{ objectPosition: program.imagePosition }}
@@ -672,10 +668,10 @@ export function HomeSections() {
           <div className="page-container relative grid w-full items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
             <Reveal className="max-w-xl">
               <p className="eyebrow text-primary">
-                 Prakrithi Yoga Studio <span className="mx-2 text-warm-gray">/</span> Coimbatore
+                Prakrithi Yoga Studio <span className="mx-2 text-warm-gray">/</span> Coimbatore
               </p>
               <h1 className="mt-5 display-serif text-[clamp(3.7rem,8vw,7.5rem)] leading-[0.83] text-foreground">
-                 Your journey to <em className="text-primary">wellness</em> begins here.
+                Your journey to <em className="text-primary">wellness</em> begins here.
               </h1>
               <p className="mt-7 max-w-md text-base leading-7 text-muted-foreground">
                 Before we move, before we stretch, we find stillness. Take a moment to sync with the
@@ -970,7 +966,7 @@ export function HomeSections() {
                 to="/contact"
                 className="mt-9 inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-sage-dark"
               >
-                 Book a session <ArrowRight className="size-4" />
+                Book a session <ArrowRight className="size-4" />
               </Link>
             </Reveal>
           </div>
