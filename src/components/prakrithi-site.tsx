@@ -9,6 +9,7 @@ import {
   Facebook,
   Instagram,
   Menu,
+  MessageCircle,
   Plus,
   X,
   Youtube,
@@ -20,8 +21,10 @@ import heroImage from "@/assets/yoga-studio-hero.jpg";
 import interiorImage from "@/assets/yoga-studio-interior.jpg";
 import communityImage from "@/assets/yoga-community.jpg";
 import detailImage from "@/assets/yoga-detail.jpg";
-import journalImage from "@/assets/yoga-journal.jpg";
-import brandLogo from "@/assets/prakrithi-green-logo.jpeg.asset.json";
+import journalMorningImage from "@/assets/journal-morning.jpg";
+import journalBreathImage from "@/assets/journal-breath.jpg";
+import journalEveningImage from "@/assets/journal-evening.jpg";
+import brandLogo from "@/assets/prakrithi-circle-logo.png";
 import beginnerYogaImage from "@/assets/online-trial-class.jpeg.asset.json";
 import womensGroupImage from "@/assets/womens-group-yoga.jpeg.asset.json";
 import breathworkImage from "@/assets/prakrithi-transformation.jpeg.asset.json";
@@ -40,7 +43,6 @@ export const programs = [
     level: "Beginner",
     schedule: "Mon, Wed, Fri — 7:00 AM",
     image: beginnerYogaImage.url,
-    imagePosition: "center center",
   },
   {
     id: "womens-morning-group",
@@ -54,7 +56,6 @@ export const programs = [
     level: "All Levels",
     schedule: "Daily — 6:00 AM",
     image: womensGroupImage.url,
-    imagePosition: "center center",
   },
   {
     id: "breathwork-basics",
@@ -68,7 +69,6 @@ export const programs = [
     level: "Beginner",
     schedule: "Tue, Thu — 8:00 AM",
     image: breathworkImage.url,
-    imagePosition: "center center",
   },
   {
     id: "personal-care-yoga",
@@ -82,7 +82,6 @@ export const programs = [
     level: "Personalised",
     schedule: "By appointment",
     image: personalYogaImage.url,
-    imagePosition: "center center",
   },
 ];
 
@@ -113,21 +112,27 @@ export const journalPosts = [
     readTime: "5 min read",
     title: "5 Minutes to Start Your Morning",
     excerpt: "A short, powerful routine you can do before your feet hit the floor.",
-    image: journalImage,
+    image: journalMorningImage,
+    content:
+      "Begin before the notifications do. Sit comfortably, soften your shoulders, and follow five unhurried breaths. A small morning pause can set a calmer rhythm for everything that follows.",
   },
   {
     category: "PRACTICE",
     readTime: "5 min read",
     title: "How Breath Shapes Your Movement",
     excerpt: "The often-overlooked connection between pranayama and physical yoga.",
-    image: detailImage,
+    image: journalBreathImage,
+    content:
+      "Breath gives movement its pace. Inhale to create space; exhale to settle more deeply. When movement follows breath instead of racing ahead, practice becomes steadier and more intuitive.",
   },
   {
     category: "LIFESTYLE",
     readTime: "4 min read",
     title: "Creating a Mindful Evening Routine",
     excerpt: "How to wind down with intention and wake up restored.",
-    image: interiorImage,
+    image: journalEveningImage,
+    content:
+      "Dim the lights, put screens aside, and choose one gentle stretch or breathing practice. Repeating a simple evening ritual tells the body that the day is complete and rest can begin.",
   },
 ];
 
@@ -201,20 +206,24 @@ export function SiteNav() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled || open ? "border-b border-border/70 bg-background/95 shadow-sm backdrop-blur-md" : "bg-transparent"}`}
       >
-        <div className="page-container flex h-[88px] items-center justify-between gap-6">
+        <div className="page-container grid h-20 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 md:flex md:h-[88px] md:justify-between md:gap-6">
           <Link
             to="/"
-            className="group flex shrink-0 items-center"
+            className="group flex min-w-0 items-center gap-3"
             onClick={close}
             aria-label="Prakrithi home"
           >
             <img
-              src={brandLogo.url}
+              src={brandLogo}
               alt="Prakrithi Yoga and Nutrition — Wellness Begins Within"
-              width={742}
+              width={1024}
               height={1024}
-              className="h-[72px] w-[54px] object-contain md:h-20 md:w-[58px]"
+              className="size-14 shrink-0 rounded-full border border-primary/30 object-cover shadow-sm md:size-[72px]"
             />
+            <span className="min-w-0 md:hidden">
+              <span className="block truncate text-sm font-semibold uppercase text-foreground">Prakrithi</span>
+              <span className="block truncate text-[0.58rem] uppercase text-muted-foreground">Wellness begins within</span>
+            </span>
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
             <Link
@@ -248,7 +257,7 @@ export function SiteNav() {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="min-h-11 min-w-11 rounded-full border border-border bg-background/80 md:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen(!open)}
             >
@@ -257,22 +266,37 @@ export function SiteNav() {
           </div>
         </div>
       </header>
-      {open && (
-        <div className="fixed inset-0 z-40 flex flex-col bg-cream px-6 pb-12 pt-32 md:hidden">
-          <nav className="flex flex-1 flex-col gap-6">
-            <Link to="/" onClick={close} className="display-serif text-5xl text-foreground">
-              Home
-            </Link>
-            <Link to="/programs" onClick={close} className="display-serif text-5xl text-foreground">
-              Programs
-            </Link>
-            <Link to="/contact" onClick={close} className="display-serif text-5xl text-foreground">
-              Contact
-            </Link>
+      <div
+        aria-hidden={!open}
+        className={`fixed inset-0 z-40 bg-charcoal/45 transition-opacity duration-300 md:hidden ${open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        onClick={close}
+      />
+      <aside
+        aria-label="Mobile navigation"
+        className={`fixed inset-x-3 top-24 z-40 overflow-hidden rounded-lg border border-border bg-cream shadow-xl transition-all duration-300 md:hidden ${open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-3 opacity-0"}`}
+      >
+        <div className="p-5">
+          <p className="eyebrow text-primary">Explore Prakrithi</p>
+          <nav className="mt-4 divide-y divide-border border-y border-border">
+            {[{ to: "/" as const, label: "Home" }, { to: "/programs" as const, label: "Programs" }, { to: "/contact" as const, label: "Contact" }].map((item) => (
+              <Link key={item.to} to={item.to} onClick={close} className="flex min-h-14 items-center justify-between text-xl font-medium text-foreground">
+                {item.label}<ArrowRight className="size-4 text-primary" />
+              </Link>
+            ))}
           </nav>
-          <p className="eyebrow text-warm-gray">Breathe. Move. Become.</p>
+          <Button asChild className="mt-5 h-12 w-full rounded-full bg-charcoal text-background hover:bg-sage-dark">
+            <Link to="/contact" onClick={close}>Book a Session <ArrowRight /></Link>
+          </Button>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            <Button asChild variant="outline" className="h-11 rounded-full">
+              <a href="https://wa.me/919629592292" target="_blank" rel="noreferrer"><MessageCircle /> WhatsApp</a>
+            </Button>
+            <Button asChild variant="outline" className="h-11 rounded-full">
+              <a href="tel:+919629592292">Call us</a>
+            </Button>
+          </div>
         </div>
-      )}
+      </aside>
     </>
   );
 }
@@ -284,12 +308,12 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8">
           <div>
             <img
-              src={brandLogo.url}
+              src={brandLogo}
               alt="Prakrithi Yoga and Nutrition — Wellness Begins Within"
-              width={742}
+              width={1024}
               height={1024}
               loading="lazy"
-              className="h-52 w-40 object-contain"
+              className="size-32 rounded-full border border-background/20 object-cover shadow-md"
             />
             <p className="mt-4 max-w-xs text-sm uppercase text-background/75">
               Wellness Begins Within.
@@ -359,13 +383,13 @@ export function Footer() {
 export function WhatsAppFab() {
   return (
     <a
-      href="https://wa.me/919629592292"
+      href="https://wa.me/919629592292?text=Hello%20Prakrithi%2C%20I%27d%20like%20to%20book%20a%20yoga%20session."
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with Prakrithi on WhatsApp"
-      className="fixed bottom-5 right-5 z-40 flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-105"
+      className="fixed bottom-4 right-4 z-40 flex min-h-12 min-w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-105 md:bottom-5 md:right-5"
     >
-      <span className="text-lg font-semibold">⌁</span>
+      <MessageCircle className="size-5" />
     </a>
   );
 }
@@ -426,23 +450,16 @@ export function ProgramList() {
   return (
     <div className="mt-12 border-t border-border">
       {programs.slice(0, 4).map((program) => (
-        <Link
-          to="/programs"
+        <article
           key={program.id}
-          className="group flex flex-col gap-5 border-b border-border py-7 transition-colors hover:bg-linen/60 md:grid md:grid-cols-[80px_160px_1fr_24px] md:items-center md:gap-8"
+          className="grid gap-5 border-b border-border py-8 md:grid-cols-[80px_160px_1fr_auto] md:items-center md:gap-8"
         >
           <span className="display-serif text-4xl text-primary/60 md:text-5xl">
             {program.index}
           </span>
-          <img
-            src={program.image}
-            alt={`${program.title} at Prakrithi Yoga Studio`}
-            width={928}
-            height={1152}
-            loading="lazy"
-            className="h-32 w-full object-cover md:h-24"
-            style={{ objectPosition: program.imagePosition }}
-          />
+          <div className="overflow-hidden rounded-md border border-border bg-background">
+            <img src={program.image} alt={`${program.title} class poster`} width={928} height={1152} loading="lazy" className="aspect-[928/1152] w-full object-contain md:h-44" />
+          </div>
           <div>
             <p className="eyebrow text-primary">{program.category}</p>
             <h3 className="display-serif mt-2 text-3xl text-foreground">{program.title}</h3>
@@ -450,8 +467,10 @@ export function ProgramList() {
               {program.shortDescription}
             </p>
           </div>
-          <ArrowRight className="hidden size-5 text-primary transition-transform group-hover:translate-x-1 md:block" />
-        </Link>
+          <Button asChild variant="outline" className="h-11 w-full rounded-full md:w-auto">
+            <Link to="/programs" hash={program.id}>View details <ArrowRight /></Link>
+          </Button>
+        </article>
       ))}
     </div>
   );
@@ -532,7 +551,7 @@ export function FAQ() {
   );
 }
 
-export function ContactForm() {
+export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }) {
   const [submitted, setSubmitted] = useState(false);
   return submitted ? (
     <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
@@ -587,14 +606,14 @@ export function ContactForm() {
           Interested Program
           <select
             name="program"
-            defaultValue=""
+            defaultValue={defaultProgram}
             className="mt-3 h-10 w-full border-0 border-b border-border bg-transparent text-sm text-foreground outline-none"
           >
             <option value="" disabled>
               Select a program
             </option>
             {programs.slice(0, 4).map((program) => (
-              <option key={program.id}>{program.title}</option>
+              <option key={program.id} value={program.id}>{program.title}</option>
             ))}
           </select>
         </label>
@@ -619,30 +638,44 @@ export function ContactForm() {
 }
 
 export function ProgramCard({ program }: { program: (typeof programs)[number] }) {
+  const message = encodeURIComponent(`Hello Prakrithi, I'd like to enquire about ${program.title}.`);
   return (
-    <Link to="/contact" className="group relative block aspect-[0.82] overflow-hidden bg-charcoal">
-      <img
-        src={program.image}
-        alt={`${program.title} at Prakrithi Yoga Studio`}
-        width={928}
-        height={1152}
-        loading="lazy"
-        className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
-        style={{ objectPosition: program.imagePosition }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/10 to-transparent" />
-      <div className="absolute inset-x-5 top-5 flex items-start justify-between">
-        <span className="rounded-full bg-primary px-3 py-1 text-[0.62rem] font-medium tracking-[0.12em] text-primary-foreground">
-          {program.category}
-        </span>
+    <article id={program.id} className="overflow-hidden rounded-md border border-border bg-background">
+      <div className="bg-linen p-3">
+        <img src={program.image} alt={`${program.title} class poster`} width={928} height={1152} loading="lazy" className="aspect-[928/1152] w-full object-contain" />
       </div>
-      <div className="absolute inset-x-5 bottom-5">
-        <h3 className="display-serif text-3xl text-background">{program.title}</h3>
-        <p className="mt-1 text-xs text-background/70">
-          {program.level} <span className="mx-1 text-primary">•</span> {program.duration}
-        </p>
+      <div className="p-5">
+        <p className="eyebrow text-primary">{program.category}</p>
+        <h3 className="mt-2 text-2xl font-semibold text-foreground">{program.title}</h3>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">{program.shortDescription}</p>
+        <p className="mt-4 text-xs text-muted-foreground">{program.level} <span className="mx-1 text-primary">•</span> {program.duration}</p>
+        <div className="mt-5 grid gap-2">
+          <Button asChild className="h-11 rounded-full bg-charcoal text-background hover:bg-sage-dark">
+            <a href={`https://wa.me/919629592292?text=${message}`} target="_blank" rel="noreferrer"><MessageCircle /> Enquire on WhatsApp</a>
+          </Button>
+          <Button asChild variant="outline" className="h-11 rounded-full">
+            <Link to="/contact" search={{ program: program.id }}>Send an enquiry</Link>
+          </Button>
+        </div>
       </div>
-    </Link>
+    </article>
+  );
+}
+
+function JournalCard({ post }: { post: (typeof journalPosts)[number] }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <article className="group overflow-hidden rounded-md border border-border bg-background">
+      <img src={post.image} alt={post.title} width={1200} height={800} loading="lazy" className="aspect-[3/2] w-full object-cover" />
+      <div className="p-5">
+        <div className="flex items-center justify-between gap-4"><span className="eyebrow text-primary">{post.category}</span><span className="shrink-0 text-xs text-muted-foreground">{post.readTime}</span></div>
+        <h3 className="mt-3 text-2xl font-semibold text-foreground">{post.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">{open ? post.content : post.excerpt}</p>
+        <Button variant="ghost" onClick={() => setOpen((value) => !value)} aria-expanded={open} className="mt-3 h-11 px-0 text-xs uppercase text-foreground hover:bg-transparent hover:text-primary">
+          {open ? "Close article" : "Read article"} {open ? <ChevronUp /> : <ArrowRight />}
+        </Button>
+      </div>
+    </article>
   );
 }
 
@@ -655,7 +688,7 @@ export function HomeSections() {
       <main>
         <section
           id="hero"
-          className="relative flex min-h-[760px] items-end overflow-hidden pb-16 pt-32 md:min-h-screen md:items-center md:pb-20"
+           className="relative flex min-h-[720px] items-end overflow-hidden pb-12 pt-28 md:min-h-screen md:items-center md:pb-20"
         >
           <img
             src={heroImage}
@@ -670,7 +703,7 @@ export function HomeSections() {
               <p className="eyebrow text-primary">
                 Prakrithi Yoga Studio <span className="mx-2 text-warm-gray">/</span> Coimbatore
               </p>
-              <h1 className="mt-5 display-serif text-[clamp(3.7rem,8vw,7.5rem)] leading-[0.83] text-foreground">
+               <h1 className="mt-5 display-serif text-5xl leading-[0.9] text-foreground sm:text-6xl md:text-[7.5rem] md:leading-[0.83]">
                 Your journey to <em className="text-primary">wellness</em> begins here.
               </h1>
               <p className="mt-7 max-w-md text-base leading-7 text-muted-foreground">
@@ -684,16 +717,16 @@ export function HomeSections() {
                 Explore the practice <ArrowDownRight className="size-4 text-primary" />
               </Link>
             </Reveal>
-            <Reveal className="flex justify-center md:justify-end" image>
+             <Reveal className="hidden justify-center md:flex md:justify-end" image>
               <BreatheWidget />
             </Reveal>
           </div>
         </section>
-        <section id="practice" className="bg-cream py-24 md:py-36">
+         <section id="practice" className="bg-cream py-16 md:py-36">
           <div className="page-container">
             <Reveal>
               <p className="eyebrow text-primary">01 / Find your practice</p>
-              <h2 className="mt-5 max-w-3xl display-serif text-5xl leading-[0.95] text-foreground sm:text-6xl md:text-8xl">
+               <h2 className="mt-5 max-w-3xl display-serif text-4xl leading-[0.98] text-foreground sm:text-6xl md:text-8xl">
                 A practice for <em className="text-primary">every</em> body.
               </h2>
               <p className="mt-7 max-w-md text-sm leading-6 text-muted-foreground">
@@ -708,18 +741,18 @@ export function HomeSections() {
         </section>
         <section
           id="philosophy"
-          className="overflow-hidden bg-charcoal py-24 text-background md:py-36"
+           className="overflow-hidden bg-charcoal py-16 text-background md:py-36"
         >
           <div className="page-container grid items-center gap-14 md:grid-cols-[0.9fr_1.1fr] md:gap-24">
             <Reveal className="order-2 md:order-1" image>
               <div className="relative">
                 <img
-                  src={heroImage}
+                   src={detailImage}
                   alt="Quiet meditation practice in a warm studio"
                   width={1600}
                   height={1200}
                   loading="lazy"
-                  className="aspect-[0.82] w-[78%] object-cover object-[26%_center]"
+                   className="aspect-[4/5] w-[88%] rounded-md object-cover md:w-[78%]"
                 />
                 <div className="absolute -bottom-8 -right-2 flex aspect-square w-36 items-center justify-center rounded-full bg-primary text-center text-[0.62rem] font-medium uppercase tracking-[0.12em] text-primary-foreground md:-right-10">
                   <span>
@@ -734,7 +767,7 @@ export function HomeSections() {
             </Reveal>
             <Reveal className="order-1 md:order-2">
               <p className="eyebrow text-primary">02 / The philosophy</p>
-              <h2 className="mt-5 display-serif text-6xl leading-[0.86] sm:text-7xl md:text-8xl">
+               <h2 className="mt-5 display-serif text-4xl leading-[0.95] sm:text-7xl md:text-8xl md:leading-[0.86]">
                 Your body <em className="text-primary">leads.</em>
                 <br />
                 Your mind follows.
@@ -752,7 +785,7 @@ export function HomeSections() {
             </Reveal>
           </div>
         </section>
-        <section id="programs" className="bg-linen py-24 md:py-36">
+         <section id="programs" className="bg-linen py-16 md:py-36">
           <div className="page-container">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <Reveal>
@@ -768,7 +801,7 @@ export function HomeSections() {
                 View all programs <ArrowRight className="size-4" />
               </Link>
             </div>
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {programs.slice(0, 4).map((program) => (
                 <Reveal key={program.id} image>
                   <ProgramCard program={program} />
@@ -777,7 +810,7 @@ export function HomeSections() {
             </div>
           </div>
         </section>
-        <section id="experience" className="bg-cream py-24 md:py-36">
+         <section id="experience" className="bg-cream py-16 md:py-36">
           <div className="page-container grid gap-12 md:grid-cols-[0.9fr_1.1fr] md:gap-24">
             <Reveal>
               <p className="eyebrow text-primary">04 / Your first visit</p>
@@ -826,11 +859,11 @@ export function HomeSections() {
             </Reveal>
           </div>
         </section>
-        <section id="community" className="bg-linen py-24 md:py-36">
+         <section id="community" className="bg-linen py-16 md:py-36">
           <div className="page-container grid items-start gap-14 md:grid-cols-[1fr_1.2fr] md:gap-24">
             <Reveal>
               <p className="eyebrow text-primary">05 / Practice together</p>
-              <h2 className="mt-5 display-serif text-6xl leading-[0.86] text-foreground md:text-8xl">
+               <h2 className="mt-5 display-serif text-4xl leading-[0.95] text-foreground md:text-8xl md:leading-[0.86]">
                 Wellness feels different when <em className="text-primary">shared.</em>
               </h2>
               <p className="mt-7 max-w-md text-sm leading-7 text-muted-foreground">
@@ -846,21 +879,21 @@ export function HomeSections() {
             </Reveal>
             <Reveal className="grid grid-cols-2 gap-3" image>
               <img
-                src={heroImage}
+                   src={communityImage}
                 alt="Sunlit studio detail"
                 width={1600}
                 height={1200}
                 loading="lazy"
-                className="mt-10 aspect-[0.78] object-cover object-[10%_center]"
+                   className="mt-8 aspect-[4/5] rounded-md object-cover"
               />
               <div className="space-y-3">
                 <img
-                  src={heroImage}
+                   src={interiorImage}
                   alt="Yoga teacher in the studio"
                   width={1600}
                   height={1200}
                   loading="lazy"
-                  className="aspect-square object-cover object-[85%_center]"
+                   className="aspect-square rounded-md object-cover"
                 />
                 <div className="flex aspect-square items-end bg-primary p-5">
                   <span className="display-serif text-3xl leading-none text-primary-foreground">
@@ -873,7 +906,7 @@ export function HomeSections() {
             </Reveal>
           </div>
         </section>
-        <section id="stories" className="bg-charcoal py-24 md:py-36">
+         <section id="stories" className="bg-charcoal py-16 md:py-36">
           <div className="page-container">
             <Reveal>
               <p className="eyebrow text-primary">06 / Stories from the mat</p>
@@ -883,7 +916,7 @@ export function HomeSections() {
             </Reveal>
           </div>
         </section>
-        <section id="journal" className="bg-cream py-24 md:py-36">
+         <section id="journal" className="bg-cream py-16 md:py-36">
           <div className="page-container">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <Reveal>
@@ -892,48 +925,20 @@ export function HomeSections() {
                   From the Prakrithi <em className="text-primary">journal.</em>
                 </h2>
               </Reveal>
-              <Link
-                to="/programs"
-                className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.14em] text-foreground hover:text-primary"
-              >
-                Read more <ArrowRight className="size-4" />
-              </Link>
+               <p className="max-w-xs text-sm leading-6 text-muted-foreground">Simple practices for calmer mornings, mindful movement, and restful evenings.</p>
             </div>
             <div className="mt-12 grid gap-7 md:grid-cols-3">
-              {journalPosts.map((post, index) => (
-                <Reveal key={post.title} className="group" image>
-                  <div>
-                    <img
-                      src={heroImage}
-                      alt={post.title}
-                      width={1600}
-                      height={1200}
-                      loading="lazy"
-                      className="aspect-[1.35] w-full object-cover"
-                      style={{ objectPosition: `${index * 42 + 14}% center` }}
-                    />
-                    <div className="mt-5 flex items-center justify-between">
-                      <span className="eyebrow text-primary">{post.category}</span>
-                      <span className="text-xs text-muted-foreground">{post.readTime}</span>
-                    </div>
-                    <h3 className="mt-3 display-serif text-3xl leading-none text-foreground transition-colors group-hover:text-primary">
-                      {post.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-6 text-muted-foreground">{post.excerpt}</p>
-                    <span className="mt-5 inline-flex items-center gap-2 text-[0.68rem] font-medium uppercase tracking-[0.14em] text-foreground">
-                      Read article <ArrowRight className="size-3 text-primary" />
-                    </span>
-                  </div>
-                </Reveal>
+               {journalPosts.map((post) => (
+                 <Reveal key={post.title} image><JournalCard post={post} /></Reveal>
               ))}
             </div>
           </div>
         </section>
-        <section id="faq" className="bg-linen py-24 md:py-36">
+         <section id="faq" className="bg-linen py-16 md:py-36">
           <div className="page-container grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:gap-24">
             <Reveal>
               <p className="eyebrow text-primary">08 / Frequently asked</p>
-              <h2 className="mt-5 max-w-sm display-serif text-6xl leading-[0.86] text-foreground md:text-8xl">
+               <h2 className="mt-5 max-w-sm display-serif text-4xl leading-[0.95] text-foreground md:text-8xl md:leading-[0.86]">
                 A little <em className="text-primary">clarity.</em>
               </h2>
             </Reveal>
