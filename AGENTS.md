@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep mobile program artwork fully visible with `object-contain`; these uploads are informational posters, not decorative photos.
+- Carry class enquiries through a validated `program` search parameter and direct WhatsApp message so customers always know the next action.

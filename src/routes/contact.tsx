@@ -1,15 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock3, Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
+import { z } from "zod";
 import {
   ContactForm,
   Footer,
   Reveal,
   SiteNav,
   WhatsAppFab,
+  programs,
   useReveals,
 } from "@/components/prakrithi-site";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: z.object({ program: z.string().optional() }),
   head: () => ({
     meta: [
       { title: "Contact — Prakrithi Yoga Studio" },
@@ -33,16 +36,20 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   useReveals();
+  const { program: requestedProgram } = Route.useSearch();
+  const defaultProgram = programs.some((program) => program.id === requestedProgram)
+    ? requestedProgram
+    : "";
   return (
     <div>
       <SiteNav />
       <WhatsAppFab />
       <main>
-        <section className="bg-cream pb-20 pt-40 md:pb-28 md:pt-48">
+        <section className="bg-cream pb-14 pt-28 md:pb-28 md:pt-48">
           <div className="page-container grid items-end gap-10 md:grid-cols-[1.2fr_0.8fr]">
             <Reveal>
               <p className="eyebrow text-primary">Prakrithi / Contact</p>
-              <h1 className="mt-6 max-w-4xl display-serif text-7xl leading-[0.8] text-foreground sm:text-8xl md:text-[9rem]">
+              <h1 className="mt-6 max-w-4xl display-serif text-5xl leading-[0.9] text-foreground sm:text-7xl md:text-[9rem] md:leading-[0.8]">
                 We'd love to <em className="text-primary">welcome</em> you.
               </h1>
             </Reveal>
@@ -53,7 +60,7 @@ function ContactPage() {
             </Reveal>
           </div>
         </section>
-        <section className="bg-linen py-20 md:py-32">
+        <section className="bg-linen py-14 md:py-32">
           <div className="page-container grid gap-14 md:grid-cols-[0.72fr_1.28fr] md:gap-24">
             <Reveal>
               <p className="eyebrow text-primary">Come as you are</p>
@@ -83,10 +90,8 @@ function ContactPage() {
                 <div className="flex items-start gap-4">
                   <Clock3 className="mt-0.5 size-4 shrink-0 text-primary" />
                   <div>
-                    <p className="text-foreground">
-                      Monday – Friday{" "}
-                      <span className="ml-4 text-muted-foreground">5:00 AM – 10:00 PM</span>
-                    </p>
+                    <p className="text-foreground">Monday – Friday</p>
+                    <p className="mt-1 text-muted-foreground">5:00 AM – 10:00 PM</p>
                   </div>
                 </div>
               </div>
@@ -126,16 +131,16 @@ function ContactPage() {
                 Your first step starts here.
               </h2>
               <div className="mt-10">
-                <ContactForm />
+                <ContactForm defaultProgram={defaultProgram} />
               </div>
             </Reveal>
           </div>
         </section>
-        <section className="bg-charcoal py-24 text-background md:py-32">
+        <section className="bg-charcoal py-16 text-background md:py-32">
           <div className="page-container text-center">
             <Reveal>
               <p className="eyebrow text-primary">Prefer a quick hello?</p>
-              <h2 className="mx-auto mt-5 max-w-3xl display-serif text-6xl leading-[0.85] md:text-8xl">
+              <h2 className="mx-auto mt-5 max-w-3xl display-serif text-4xl leading-[0.95] md:text-8xl md:leading-[0.85]">
                 Message us on <em className="text-primary">WhatsApp.</em>
               </h2>
               <a

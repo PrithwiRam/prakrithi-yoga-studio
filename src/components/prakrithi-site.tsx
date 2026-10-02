@@ -200,6 +200,15 @@ export function SiteNav() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    const onKeyDown = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
   const close = () => setOpen(false);
   return (
     <>
@@ -568,6 +577,21 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
       className="space-y-7"
       onSubmit={(event) => {
         event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const name = String(data.get("name") ?? "").trim().slice(0, 100);
+        const phone = String(data.get("phone") ?? "").trim().slice(0, 30);
+        const programId = String(data.get("program") ?? "");
+        const message = String(data.get("message") ?? "").trim().slice(0, 600);
+        const program = programs.find((item) => item.id === programId);
+        const enquiry = [
+          `Hello Prakrithi, I'm ${name}.`,
+          program ? `I'm interested in ${program.title}.` : "I'd like to enquire about a yoga session.",
+          phone ? `My phone number is ${phone}.` : "",
+          message,
+        ]
+          .filter(Boolean)
+          .join("\n");
+        window.open(`https://wa.me/919629592292?text=${encodeURIComponent(enquiry)}`, "_blank", "noopener,noreferrer");
         setSubmitted(true);
       }}
     >
@@ -577,6 +601,7 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
           <Input
             required
             name="name"
+            maxLength={100}
             placeholder="Your name"
             className="mt-3 h-10 rounded-none border-0 border-b border-border bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
           />
@@ -587,6 +612,7 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
             required
             type="email"
             name="email"
+            maxLength={255}
             placeholder="you@email.com"
             className="mt-3 h-10 rounded-none border-0 border-b border-border bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
           />
@@ -598,6 +624,7 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
           <Input
             type="tel"
             name="phone"
+            maxLength={30}
             placeholder="Your number"
             className="mt-3 h-10 rounded-none border-0 border-b border-border bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
           />
@@ -622,6 +649,7 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
         Your Message
         <Textarea
           name="message"
+          maxLength={600}
           rows={3}
           placeholder="Tell us a little about what you're looking for"
           className="mt-3 resize-none rounded-none border-0 border-b border-border bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
@@ -631,7 +659,7 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
         type="submit"
         className="h-12 w-full rounded-full bg-charcoal text-background hover:bg-sage-dark"
       >
-        Send Message <ArrowRight className="size-4" />
+        Continue on WhatsApp <MessageCircle className="size-4" />
       </Button>
     </form>
   );
