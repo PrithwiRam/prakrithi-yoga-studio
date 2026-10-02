@@ -213,7 +213,7 @@ export function SiteNav() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled || open ? "border-b border-border/70 bg-background/95 shadow-sm backdrop-blur-md" : "bg-transparent"}`}
+        className={`fixed inset-x-0 top-0 z-50 bg-background/95 shadow-sm backdrop-blur-md transition-all duration-300 ${scrolled || open ? "border-b border-border/70 md:bg-background/95" : "md:bg-transparent md:shadow-none"}`}
       >
         <div className="page-container grid h-20 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 md:flex md:h-[88px] md:justify-between md:gap-6">
           <Link
@@ -731,7 +731,7 @@ export function ProgramCard({ program }: { program: (typeof programs)[number] })
       <div className="p-5">
         <p className="eyebrow text-primary">{program.category}</p>
         <h3 className="mt-2 text-2xl font-semibold text-foreground">{program.title}</h3>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">{program.shortDescription}</p>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">{program.longDescription}</p>
         <p className="mt-4 text-xs text-muted-foreground">
           {program.level} <span className="mx-1 text-primary">•</span> {program.duration}
         </p>
