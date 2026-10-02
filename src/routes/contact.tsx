@@ -37,9 +37,7 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   useReveals();
   const { program: requestedProgram } = Route.useSearch();
-  const defaultProgram = programs.some((program) => program.id === requestedProgram)
-    ? requestedProgram
-    : "";
+  const defaultProgram = programs.find((program) => program.id === requestedProgram)?.id ?? "";
   return (
     <div>
       <SiteNav />
