@@ -238,3 +238,12 @@
     width: min(100% - 5rem, 1280px);
   }
 }
+
+@media (max-width: 767px) {
+  .reveal,
+  .image-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

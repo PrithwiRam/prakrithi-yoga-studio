@@ -200,11 +200,20 @@ export function SiteNav() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    const onKeyDown = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
   const close = () => setOpen(false);
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled || open ? "border-b border-border/70 bg-background/95 shadow-sm backdrop-blur-md" : "bg-transparent"}`}
+        className={`fixed inset-x-0 top-0 z-50 bg-background/95 shadow-sm backdrop-blur-md transition-all duration-300 ${scrolled || open ? "border-b border-border/70 md:bg-background/95" : "md:bg-transparent md:shadow-none"}`}
       >
         <div className="page-container grid h-20 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 md:flex md:h-[88px] md:justify-between md:gap-6">
           <Link
@@ -221,8 +230,12 @@ export function SiteNav() {
               className="size-14 shrink-0 rounded-full border border-primary/30 object-cover shadow-sm md:size-[72px]"
             />
             <span className="min-w-0 md:hidden">
-              <span className="block truncate text-sm font-semibold uppercase text-foreground">Prakrithi</span>
-              <span className="block truncate text-[0.58rem] uppercase text-muted-foreground">Wellness begins within</span>
+              <span className="block truncate text-sm font-semibold uppercase text-foreground">
+                Prakrithi
+              </span>
+              <span className="block truncate text-[0.58rem] uppercase text-muted-foreground">
+                Wellness begins within
+              </span>
             </span>
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
@@ -278,18 +291,35 @@ export function SiteNav() {
         <div className="p-5">
           <p className="eyebrow text-primary">Explore Prakrithi</p>
           <nav className="mt-4 divide-y divide-border border-y border-border">
-            {[{ to: "/" as const, label: "Home" }, { to: "/programs" as const, label: "Programs" }, { to: "/contact" as const, label: "Contact" }].map((item) => (
-              <Link key={item.to} to={item.to} onClick={close} className="flex min-h-14 items-center justify-between text-xl font-medium text-foreground">
-                {item.label}<ArrowRight className="size-4 text-primary" />
+            {[
+              { to: "/" as const, label: "Home" },
+              { to: "/programs" as const, label: "Programs" },
+              { to: "/contact" as const, label: "Contact" },
+            ].map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={close}
+                className="flex min-h-14 items-center justify-between text-xl font-medium text-foreground"
+              >
+                {item.label}
+                <ArrowRight className="size-4 text-primary" />
               </Link>
             ))}
           </nav>
-          <Button asChild className="mt-5 h-12 w-full rounded-full bg-charcoal text-background hover:bg-sage-dark">
-            <Link to="/contact" onClick={close}>Book a Session <ArrowRight /></Link>
+          <Button
+            asChild
+            className="mt-5 h-12 w-full rounded-full bg-charcoal text-background hover:bg-sage-dark"
+          >
+            <Link to="/contact" onClick={close}>
+              Book a Session <ArrowRight />
+            </Link>
           </Button>
           <div className="mt-4 grid grid-cols-2 gap-2">
             <Button asChild variant="outline" className="h-11 rounded-full">
-              <a href="https://wa.me/919629592292" target="_blank" rel="noreferrer"><MessageCircle /> WhatsApp</a>
+              <a href="https://wa.me/919629592292" target="_blank" rel="noreferrer">
+                <MessageCircle /> WhatsApp
+              </a>
             </Button>
             <Button asChild variant="outline" className="h-11 rounded-full">
               <a href="tel:+919629592292">Call us</a>
@@ -458,7 +488,14 @@ export function ProgramList() {
             {program.index}
           </span>
           <div className="overflow-hidden rounded-md border border-border bg-background">
-            <img src={program.image} alt={`${program.title} class poster`} width={928} height={1152} loading="lazy" className="aspect-[928/1152] w-full object-contain md:h-44" />
+            <img
+              src={program.image}
+              alt={`${program.title} class poster`}
+              width={928}
+              height={1152}
+              loading="lazy"
+              className="aspect-[928/1152] w-full object-contain md:h-44"
+            />
           </div>
           <div>
             <p className="eyebrow text-primary">{program.category}</p>
@@ -468,7 +505,9 @@ export function ProgramList() {
             </p>
           </div>
           <Button asChild variant="outline" className="h-11 w-full rounded-full md:w-auto">
-            <Link to="/programs" hash={program.id}>View details <ArrowRight /></Link>
+            <Link to="/programs" hash={program.id}>
+              View details <ArrowRight />
+            </Link>
           </Button>
         </article>
       ))}
@@ -568,6 +607,33 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
       className="space-y-7"
       onSubmit={(event) => {
         event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const name = String(data.get("name") ?? "")
+          .trim()
+          .slice(0, 100);
+        const phone = String(data.get("phone") ?? "")
+          .trim()
+          .slice(0, 30);
+        const programId = String(data.get("program") ?? "");
+        const message = String(data.get("message") ?? "")
+          .trim()
+          .slice(0, 600);
+        const program = programs.find((item) => item.id === programId);
+        const enquiry = [
+          `Hello Prakrithi, I'm ${name}.`,
+          program
+            ? `I'm interested in ${program.title}.`
+            : "I'd like to enquire about a yoga session.",
+          phone ? `My phone number is ${phone}.` : "",
+          message,
+        ]
+          .filter(Boolean)
+          .join("\n");
+        window.open(
+          `https://wa.me/919629592292?text=${encodeURIComponent(enquiry)}`,
+          "_blank",
+          "noopener,noreferrer",
+        );
         setSubmitted(true);
       }}
     >
@@ -577,6 +643,7 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
           <Input
             required
             name="name"
+            maxLength={100}
             placeholder="Your name"
             className="mt-3 h-10 rounded-none border-0 border-b border-border bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
           />
@@ -587,6 +654,7 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
             required
             type="email"
             name="email"
+            maxLength={255}
             placeholder="you@email.com"
             className="mt-3 h-10 rounded-none border-0 border-b border-border bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
           />
@@ -598,6 +666,7 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
           <Input
             type="tel"
             name="phone"
+            maxLength={30}
             placeholder="Your number"
             className="mt-3 h-10 rounded-none border-0 border-b border-border bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
           />
@@ -613,7 +682,9 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
               Select a program
             </option>
             {programs.slice(0, 4).map((program) => (
-              <option key={program.id} value={program.id}>{program.title}</option>
+              <option key={program.id} value={program.id}>
+                {program.title}
+              </option>
             ))}
           </select>
         </label>
@@ -622,6 +693,7 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
         Your Message
         <Textarea
           name="message"
+          maxLength={600}
           rows={3}
           placeholder="Tell us a little about what you're looking for"
           className="mt-3 resize-none rounded-none border-0 border-b border-border bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
@@ -631,30 +703,51 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
         type="submit"
         className="h-12 w-full rounded-full bg-charcoal text-background hover:bg-sage-dark"
       >
-        Send Message <ArrowRight className="size-4" />
+        Continue on WhatsApp <MessageCircle className="size-4" />
       </Button>
     </form>
   );
 }
 
 export function ProgramCard({ program }: { program: (typeof programs)[number] }) {
-  const message = encodeURIComponent(`Hello Prakrithi, I'd like to enquire about ${program.title}.`);
+  const message = encodeURIComponent(
+    `Hello Prakrithi, I'd like to enquire about ${program.title}.`,
+  );
   return (
-    <article id={program.id} className="overflow-hidden rounded-md border border-border bg-background">
+    <article
+      id={program.id}
+      className="overflow-hidden rounded-md border border-border bg-background"
+    >
       <div className="bg-linen p-3">
-        <img src={program.image} alt={`${program.title} class poster`} width={928} height={1152} loading="lazy" className="aspect-[928/1152] w-full object-contain" />
+        <img
+          src={program.image}
+          alt={`${program.title} class poster`}
+          width={928}
+          height={1152}
+          loading="lazy"
+          className="aspect-[928/1152] w-full object-contain"
+        />
       </div>
       <div className="p-5">
         <p className="eyebrow text-primary">{program.category}</p>
         <h3 className="mt-2 text-2xl font-semibold text-foreground">{program.title}</h3>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">{program.shortDescription}</p>
-        <p className="mt-4 text-xs text-muted-foreground">{program.level} <span className="mx-1 text-primary">•</span> {program.duration}</p>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">{program.longDescription}</p>
+        <p className="mt-4 text-xs text-muted-foreground">
+          {program.level} <span className="mx-1 text-primary">•</span> {program.duration}
+        </p>
         <div className="mt-5 grid gap-2">
-          <Button asChild className="h-11 rounded-full bg-charcoal text-background hover:bg-sage-dark">
-            <a href={`https://wa.me/919629592292?text=${message}`} target="_blank" rel="noreferrer"><MessageCircle /> Enquire on WhatsApp</a>
+          <Button
+            asChild
+            className="h-11 rounded-full bg-charcoal text-background hover:bg-sage-dark"
+          >
+            <a href={`https://wa.me/919629592292?text=${message}`} target="_blank" rel="noreferrer">
+              <MessageCircle /> Enquire on WhatsApp
+            </a>
           </Button>
           <Button asChild variant="outline" className="h-11 rounded-full">
-            <Link to="/contact" search={{ program: program.id }}>Send an enquiry</Link>
+            <Link to="/contact" search={{ program: program.id }}>
+              Send an enquiry
+            </Link>
           </Button>
         </div>
       </div>
@@ -666,12 +759,29 @@ function JournalCard({ post }: { post: (typeof journalPosts)[number] }) {
   const [open, setOpen] = useState(false);
   return (
     <article className="group overflow-hidden rounded-md border border-border bg-background">
-      <img src={post.image} alt={post.title} width={1200} height={800} loading="lazy" className="aspect-[3/2] w-full object-cover" />
+      <img
+        src={post.image}
+        alt={post.title}
+        width={1200}
+        height={800}
+        loading="lazy"
+        className="aspect-[3/2] w-full object-cover"
+      />
       <div className="p-5">
-        <div className="flex items-center justify-between gap-4"><span className="eyebrow text-primary">{post.category}</span><span className="shrink-0 text-xs text-muted-foreground">{post.readTime}</span></div>
+        <div className="flex items-center justify-between gap-4">
+          <span className="eyebrow text-primary">{post.category}</span>
+          <span className="shrink-0 text-xs text-muted-foreground">{post.readTime}</span>
+        </div>
         <h3 className="mt-3 text-2xl font-semibold text-foreground">{post.title}</h3>
-        <p className="mt-3 text-sm leading-6 text-muted-foreground">{open ? post.content : post.excerpt}</p>
-        <Button variant="ghost" onClick={() => setOpen((value) => !value)} aria-expanded={open} className="mt-3 h-11 px-0 text-xs uppercase text-foreground hover:bg-transparent hover:text-primary">
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+          {open ? post.content : post.excerpt}
+        </p>
+        <Button
+          variant="ghost"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          className="mt-3 h-11 px-0 text-xs uppercase text-foreground hover:bg-transparent hover:text-primary"
+        >
           {open ? "Close article" : "Read article"} {open ? <ChevronUp /> : <ArrowRight />}
         </Button>
       </div>
@@ -688,7 +798,7 @@ export function HomeSections() {
       <main>
         <section
           id="hero"
-           className="relative flex min-h-[720px] items-end overflow-hidden pb-12 pt-28 md:min-h-screen md:items-center md:pb-20"
+          className="relative flex min-h-[720px] items-end overflow-hidden pb-12 pt-28 md:min-h-screen md:items-center md:pb-20"
         >
           <img
             src={heroImage}
@@ -703,7 +813,7 @@ export function HomeSections() {
               <p className="eyebrow text-primary">
                 Prakrithi Yoga Studio <span className="mx-2 text-warm-gray">/</span> Coimbatore
               </p>
-               <h1 className="mt-5 display-serif text-5xl leading-[0.9] text-foreground sm:text-6xl md:text-[7.5rem] md:leading-[0.83]">
+              <h1 className="mt-5 display-serif text-5xl leading-[0.9] text-foreground sm:text-6xl md:text-[7.5rem] md:leading-[0.83]">
                 Your journey to <em className="text-primary">wellness</em> begins here.
               </h1>
               <p className="mt-7 max-w-md text-base leading-7 text-muted-foreground">
@@ -717,16 +827,16 @@ export function HomeSections() {
                 Explore the practice <ArrowDownRight className="size-4 text-primary" />
               </Link>
             </Reveal>
-             <Reveal className="hidden justify-center md:flex md:justify-end" image>
+            <Reveal className="hidden justify-center md:flex md:justify-end" image>
               <BreatheWidget />
             </Reveal>
           </div>
         </section>
-         <section id="practice" className="bg-cream py-16 md:py-36">
+        <section id="practice" className="bg-cream py-16 md:py-36">
           <div className="page-container">
             <Reveal>
               <p className="eyebrow text-primary">01 / Find your practice</p>
-               <h2 className="mt-5 max-w-3xl display-serif text-4xl leading-[0.98] text-foreground sm:text-6xl md:text-8xl">
+              <h2 className="mt-5 max-w-3xl display-serif text-4xl leading-[0.98] text-foreground sm:text-6xl md:text-8xl">
                 A practice for <em className="text-primary">every</em> body.
               </h2>
               <p className="mt-7 max-w-md text-sm leading-6 text-muted-foreground">
@@ -741,18 +851,18 @@ export function HomeSections() {
         </section>
         <section
           id="philosophy"
-           className="overflow-hidden bg-charcoal py-16 text-background md:py-36"
+          className="overflow-hidden bg-charcoal py-16 text-background md:py-36"
         >
           <div className="page-container grid items-center gap-14 md:grid-cols-[0.9fr_1.1fr] md:gap-24">
             <Reveal className="order-2 md:order-1" image>
               <div className="relative">
                 <img
-                   src={detailImage}
+                  src={detailImage}
                   alt="Quiet meditation practice in a warm studio"
                   width={1600}
                   height={1200}
                   loading="lazy"
-                   className="aspect-[4/5] w-[88%] rounded-md object-cover md:w-[78%]"
+                  className="aspect-[4/5] w-[88%] rounded-md object-cover md:w-[78%]"
                 />
                 <div className="absolute -bottom-8 -right-2 flex aspect-square w-36 items-center justify-center rounded-full bg-primary text-center text-[0.62rem] font-medium uppercase tracking-[0.12em] text-primary-foreground md:-right-10">
                   <span>
@@ -767,7 +877,7 @@ export function HomeSections() {
             </Reveal>
             <Reveal className="order-1 md:order-2">
               <p className="eyebrow text-primary">02 / The philosophy</p>
-               <h2 className="mt-5 display-serif text-4xl leading-[0.95] sm:text-7xl md:text-8xl md:leading-[0.86]">
+              <h2 className="mt-5 display-serif text-4xl leading-[0.95] sm:text-7xl md:text-8xl md:leading-[0.86]">
                 Your body <em className="text-primary">leads.</em>
                 <br />
                 Your mind follows.
@@ -785,7 +895,7 @@ export function HomeSections() {
             </Reveal>
           </div>
         </section>
-         <section id="programs" className="bg-linen py-16 md:py-36">
+        <section id="programs" className="bg-linen py-16 md:py-36">
           <div className="page-container">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <Reveal>
@@ -801,7 +911,7 @@ export function HomeSections() {
                 View all programs <ArrowRight className="size-4" />
               </Link>
             </div>
-             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {programs.slice(0, 4).map((program) => (
                 <Reveal key={program.id} image>
                   <ProgramCard program={program} />
@@ -810,7 +920,7 @@ export function HomeSections() {
             </div>
           </div>
         </section>
-         <section id="experience" className="bg-cream py-16 md:py-36">
+        <section id="experience" className="bg-cream py-16 md:py-36">
           <div className="page-container grid gap-12 md:grid-cols-[0.9fr_1.1fr] md:gap-24">
             <Reveal>
               <p className="eyebrow text-primary">04 / Your first visit</p>
@@ -859,11 +969,11 @@ export function HomeSections() {
             </Reveal>
           </div>
         </section>
-         <section id="community" className="bg-linen py-16 md:py-36">
+        <section id="community" className="bg-linen py-16 md:py-36">
           <div className="page-container grid items-start gap-14 md:grid-cols-[1fr_1.2fr] md:gap-24">
             <Reveal>
               <p className="eyebrow text-primary">05 / Practice together</p>
-               <h2 className="mt-5 display-serif text-4xl leading-[0.95] text-foreground md:text-8xl md:leading-[0.86]">
+              <h2 className="mt-5 display-serif text-4xl leading-[0.95] text-foreground md:text-8xl md:leading-[0.86]">
                 Wellness feels different when <em className="text-primary">shared.</em>
               </h2>
               <p className="mt-7 max-w-md text-sm leading-7 text-muted-foreground">
@@ -879,21 +989,21 @@ export function HomeSections() {
             </Reveal>
             <Reveal className="grid grid-cols-2 gap-3" image>
               <img
-                   src={communityImage}
+                src={communityImage}
                 alt="Sunlit studio detail"
                 width={1600}
                 height={1200}
                 loading="lazy"
-                   className="mt-8 aspect-[4/5] rounded-md object-cover"
+                className="mt-8 aspect-[4/5] rounded-md object-cover"
               />
               <div className="space-y-3">
                 <img
-                   src={interiorImage}
+                  src={interiorImage}
                   alt="Yoga teacher in the studio"
                   width={1600}
                   height={1200}
                   loading="lazy"
-                   className="aspect-square rounded-md object-cover"
+                  className="aspect-square rounded-md object-cover"
                 />
                 <div className="flex aspect-square items-end bg-primary p-5">
                   <span className="display-serif text-3xl leading-none text-primary-foreground">
@@ -906,7 +1016,7 @@ export function HomeSections() {
             </Reveal>
           </div>
         </section>
-         <section id="stories" className="bg-charcoal py-16 md:py-36">
+        <section id="stories" className="bg-charcoal py-16 md:py-36">
           <div className="page-container">
             <Reveal>
               <p className="eyebrow text-primary">06 / Stories from the mat</p>
@@ -916,7 +1026,7 @@ export function HomeSections() {
             </Reveal>
           </div>
         </section>
-         <section id="journal" className="bg-cream py-16 md:py-36">
+        <section id="journal" className="bg-cream py-16 md:py-36">
           <div className="page-container">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <Reveal>
@@ -925,20 +1035,24 @@ export function HomeSections() {
                   From the Prakrithi <em className="text-primary">journal.</em>
                 </h2>
               </Reveal>
-               <p className="max-w-xs text-sm leading-6 text-muted-foreground">Simple practices for calmer mornings, mindful movement, and restful evenings.</p>
+              <p className="max-w-xs text-sm leading-6 text-muted-foreground">
+                Simple practices for calmer mornings, mindful movement, and restful evenings.
+              </p>
             </div>
             <div className="mt-12 grid gap-7 md:grid-cols-3">
-               {journalPosts.map((post) => (
-                 <Reveal key={post.title} image><JournalCard post={post} /></Reveal>
+              {journalPosts.map((post) => (
+                <Reveal key={post.title} image>
+                  <JournalCard post={post} />
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
-         <section id="faq" className="bg-linen py-16 md:py-36">
+        <section id="faq" className="bg-linen py-16 md:py-36">
           <div className="page-container grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:gap-24">
             <Reveal>
               <p className="eyebrow text-primary">08 / Frequently asked</p>
-               <h2 className="mt-5 max-w-sm display-serif text-4xl leading-[0.95] text-foreground md:text-8xl md:leading-[0.86]">
+              <h2 className="mt-5 max-w-sm display-serif text-4xl leading-[0.95] text-foreground md:text-8xl md:leading-[0.86]">
                 A little <em className="text-primary">clarity.</em>
               </h2>
             </Reveal>

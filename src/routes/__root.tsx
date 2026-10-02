@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -34,7 +35,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -77,20 +78,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Prakrithi Yoga Studio" },
+      { title: "Prakrithi Yoga & Nutrition | Coimbatore" },
       {
         name: "description",
-        content: "A calm, welcoming yoga studio for breath-led movement, stillness, and community.",
+        content:
+          "Personal yoga, women's online classes, beginner sessions, and breathwork from Prakrithi Yoga & Nutrition in Coimbatore.",
       },
-      { name: "author", content: "Prakrithi Yoga Studio" },
-      { property: "og:title", content: "Prakrithi Yoga Studio" },
+      { name: "author", content: "Prakrithi Yoga & Nutrition" },
+      { property: "og:title", content: "Prakrithi Yoga & Nutrition | Coimbatore" },
       {
         property: "og:description",
-        content: "A calm, welcoming yoga studio for breath-led movement, stillness, and community.",
+        content:
+          "Personal yoga, women's online classes, beginner sessions, and breathwork in Coimbatore.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

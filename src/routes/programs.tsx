@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Clock3, MoveRight } from "lucide-react";
+import { MoveRight } from "lucide-react";
 import {
   Footer,
   ProgramCard,
@@ -39,11 +39,11 @@ function ProgramsPage() {
       <SiteNav />
       <WhatsAppFab />
       <main>
-        <section className="relative overflow-hidden bg-charcoal pb-20 pt-40 text-background md:pb-28 md:pt-48">
+        <section className="relative overflow-hidden bg-charcoal pb-14 pt-28 text-background md:pb-28 md:pt-48">
           <div className="page-container grid items-end gap-10 md:grid-cols-[1.1fr_0.9fr]">
             <Reveal>
               <p className="eyebrow text-primary">Prakrithi / Programs</p>
-              <h1 className="mt-6 max-w-4xl display-serif text-7xl leading-[0.8] sm:text-8xl md:text-[9rem]">
+              <h1 className="mt-6 max-w-4xl display-serif text-5xl leading-[0.9] sm:text-7xl md:text-[9rem] md:leading-[0.8]">
                 Find your <em className="text-primary">practice.</em>
               </h1>
             </Reveal>
@@ -55,7 +55,7 @@ function ProgramsPage() {
             </Reveal>
           </div>
         </section>
-        <section className="bg-cream py-24 md:py-36">
+        <section className="bg-cream py-16 md:py-36">
           <div className="page-container">
             <Reveal>
               <p className="eyebrow text-primary">The studio schedule</p>
@@ -63,39 +63,16 @@ function ProgramsPage() {
                 Move at your own <em className="text-primary">pace.</em>
               </h2>
             </Reveal>
-            <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {programs.map((program) => (
                 <Reveal key={program.id} image>
-                  <article className="group block overflow-hidden border border-border bg-linen">
-                    <div className="relative aspect-[0.82] overflow-hidden">
-                      <ProgramCard program={program} />
-                    </div>
-                    <div className="p-6">
-                      <p className="eyebrow text-primary">{program.category}</p>
-                      <h3 className="mt-3 display-serif text-3xl text-foreground">
-                        {program.title}
-                      </h3>
-                      <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                        {program.longDescription}
-                      </p>
-                      <div className="mt-6 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
-                        <span className="inline-flex items-center gap-2">
-                          <Clock3 className="size-3.5 text-primary" />
-                          {program.duration}
-                        </span>
-                        <span>{program.level}</span>
-                      </div>
-                      <span className="mt-5 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.12em] text-foreground group-hover:text-primary">
-                        Enquire about this class <ArrowRight className="size-3.5" />
-                      </span>
-                    </div>
-                  </article>
+                  <ProgramCard program={program} />
                 </Reveal>
               ))}
             </div>
           </div>
         </section>
-        <section className="bg-linen py-24 md:py-32">
+        <section className="bg-linen py-16 md:py-32">
           <div className="page-container flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
             <div>
               <p className="eyebrow text-primary">Not sure where to begin?</p>
