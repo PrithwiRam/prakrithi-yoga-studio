@@ -568,13 +568,19 @@ export function ProgramList() {
                   </div>
                 </div>
                 {selectedProgram.id === "personal-care-yoga" ? (
-                  <Button asChild className="mt-6 h-12 rounded-full bg-charcoal text-background hover:bg-sage-dark">
+                  <Button
+                    asChild
+                    className="mt-6 h-12 rounded-full bg-charcoal text-background hover:bg-sage-dark"
+                  >
                     <Link to="/contact" search={{ program: selectedProgram.id }}>
                       Send a personal enquiry <ArrowRight />
                     </Link>
                   </Button>
                 ) : (
-                  <Button asChild className="mt-6 h-12 rounded-full bg-charcoal text-background hover:bg-sage-dark">
+                  <Button
+                    asChild
+                    className="mt-6 h-12 rounded-full bg-charcoal text-background hover:bg-sage-dark"
+                  >
                     <a
                       href={`https://wa.me/919629592292?text=${joinMessage}`}
                       target="_blank"
