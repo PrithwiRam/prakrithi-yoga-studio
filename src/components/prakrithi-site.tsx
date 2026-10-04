@@ -695,9 +695,12 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
         const name = String(data.get("name") ?? "")
           .trim()
           .slice(0, 100);
-        const phone = String(data.get("phone") ?? "")
+        const whatsapp = String(data.get("whatsapp") ?? "")
           .trim()
           .slice(0, 30);
+        const email = String(data.get("email") ?? "")
+          .trim()
+          .slice(0, 255);
         const programId = String(data.get("program") ?? "");
         const message = String(data.get("message") ?? "")
           .trim()
@@ -708,7 +711,8 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
           program
             ? `I'm interested in ${program.title}.`
             : "I'd like to enquire about a yoga session.",
-          phone ? `My phone number is ${phone}.` : "",
+          whatsapp ? `My WhatsApp number is ${whatsapp}.` : "",
+          email ? `My email is ${email}.` : "",
           message,
         ]
           .filter(Boolean)
@@ -746,12 +750,13 @@ export function ContactForm({ defaultProgram = "" }: { defaultProgram?: string }
       </div>
       <div className="grid gap-7 sm:grid-cols-2">
         <label className="eyebrow text-muted-foreground">
-          Phone Number
+          WhatsApp Number
           <Input
+            required
             type="tel"
-            name="phone"
+            name="whatsapp"
             maxLength={30}
-            placeholder="Your number"
+            placeholder="Your WhatsApp number"
             className="mt-3 h-10 rounded-none border-0 border-b border-border bg-transparent px-0 text-base shadow-none focus-visible:ring-0"
           />
         </label>
