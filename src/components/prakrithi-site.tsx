@@ -15,6 +15,13 @@ import {
   Youtube,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import heroImage from "@/assets/yoga-studio-hero.jpg";
@@ -477,41 +484,112 @@ export function BreatheWidget() {
 }
 
 export function ProgramList() {
+  const [selectedProgram, setSelectedProgram] = useState<(typeof programs)[number] | null>(null);
+
+  const joinMessage = selectedProgram
+    ? encodeURIComponent(
+        `Hello Prakrithi, I'd like to join the ${selectedProgram.title} class. Please share the next available session details.`,
+      )
+    : "";
+
   return (
-    <div className="mt-12 border-t border-border">
-      {programs.slice(0, 4).map((program) => (
-        <article
-          key={program.id}
-          className="grid gap-5 border-b border-border py-8 md:grid-cols-[80px_160px_1fr_auto] md:items-center md:gap-8"
-        >
-          <span className="display-serif text-4xl text-primary/60 md:text-5xl">
-            {program.index}
-          </span>
-          <div className="overflow-hidden rounded-md border border-border bg-background">
-            <img
-              src={program.image}
-              alt={`${program.title} class poster`}
-              width={928}
-              height={1152}
-              loading="lazy"
-              className="aspect-[928/1152] w-full object-contain md:h-44"
-            />
-          </div>
-          <div>
-            <p className="eyebrow text-primary">{program.category}</p>
-            <h3 className="display-serif mt-2 text-3xl text-foreground">{program.title}</h3>
-            <p className="mt-1 max-w-lg text-sm leading-6 text-muted-foreground">
-              {program.shortDescription}
-            </p>
-          </div>
-          <Button asChild variant="outline" className="h-11 w-full rounded-full md:w-auto">
-            <Link to="/programs" hash={program.id}>
+    <>
+      <div className="mt-12 border-t border-border">
+        {programs.slice(0, 4).map((program) => (
+          <article
+            key={program.id}
+            className="grid gap-5 border-b border-border py-8 md:grid-cols-[80px_160px_1fr_auto] md:items-center md:gap-8"
+          >
+            <span className="display-serif text-4xl text-primary/60 md:text-5xl">
+              {program.index}
+            </span>
+            <div className="overflow-hidden rounded-md border border-border bg-background">
+              <img
+                src={program.image}
+                alt={`${program.title} class poster`}
+                width={928}
+                height={1152}
+                loading="lazy"
+                className="aspect-[928/1152] w-full object-contain md:h-44"
+              />
+            </div>
+            <div>
+              <p className="eyebrow text-primary">{program.category}</p>
+              <h3 className="display-serif mt-2 text-3xl text-foreground">{program.title}</h3>
+              <p className="mt-1 max-w-lg text-sm leading-6 text-muted-foreground">
+                {program.shortDescription}
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              onClick={() => setSelectedProgram(program)}
+              className="h-11 w-full rounded-full md:w-auto"
+            >
               View details <ArrowRight />
-            </Link>
-          </Button>
-        </article>
-      ))}
-    </div>
+            </Button>
+          </article>
+        ))}
+      </div>
+
+      <Dialog
+        open={selectedProgram !== null}
+        onOpenChange={(open) => !open && setSelectedProgram(null)}
+      >
+        <DialogContent className="max-h-[90vh] w-[calc(100%-2rem)] max-w-3xl overflow-y-auto rounded-md border-border bg-cream p-0">
+          {selectedProgram ? (
+            <div className="grid md:grid-cols-[0.78fr_1.22fr]">
+              <div className="bg-linen p-4">
+                <img
+                  src={selectedProgram.image}
+                  alt={`${selectedProgram.title} class poster`}
+                  width={928}
+                  height={1152}
+                  className="mx-auto aspect-[928/1152] max-h-[56vh] w-full object-contain"
+                />
+              </div>
+              <div className="flex flex-col justify-center p-6 sm:p-8">
+                <DialogHeader className="text-left">
+                  <p className="eyebrow text-primary">{selectedProgram.category}</p>
+                  <DialogTitle className="display-serif mt-2 text-3xl leading-tight text-foreground sm:text-4xl">
+                    {selectedProgram.title}
+                  </DialogTitle>
+                  <DialogDescription className="pt-3 text-sm leading-6 text-muted-foreground">
+                    {selectedProgram.longDescription}
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="mt-5 grid grid-cols-2 gap-3 border-y border-border py-4 text-sm">
+                  <div>
+                    <p className="eyebrow text-primary">Duration</p>
+                    <p className="mt-1 text-foreground">{selectedProgram.duration}</p>
+                  </div>
+                  <div>
+                    <p className="eyebrow text-primary">Level</p>
+                    <p className="mt-1 text-foreground">{selectedProgram.level}</p>
+                  </div>
+                </div>
+                {selectedProgram.id === "personal-care-yoga" ? (
+                  <Button asChild className="mt-6 h-12 rounded-full bg-charcoal text-background hover:bg-sage-dark">
+                    <Link to="/contact" search={{ program: selectedProgram.id }}>
+                      Send a personal enquiry <ArrowRight />
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button asChild className="mt-6 h-12 rounded-full bg-charcoal text-background hover:bg-sage-dark">
+                    <a
+                      href={`https://wa.me/919629592292?text=${joinMessage}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <MessageCircle /> Message to join class
+                    </a>
+                  </Button>
+                )}
+              </div>
+            </div>
+          ) : null}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
 

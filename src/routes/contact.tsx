@@ -75,8 +75,11 @@ function ContactPage() {
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="size-4 shrink-0 text-primary" />
-                  <a href="mailto:hello@prakrithiyoga.com" className="hover:text-primary">
-                    hello@prakrithiyoga.com
+                  <a
+                    href="mailto:prakrithiyogaandnutrition@gmail.com"
+                    className="break-all hover:text-primary"
+                  >
+                    prakrithiyogaandnutrition@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center gap-4">
@@ -88,7 +91,7 @@ function ContactPage() {
                 <div className="flex items-start gap-4">
                   <Clock3 className="mt-0.5 size-4 shrink-0 text-primary" />
                   <div>
-                    <p className="text-foreground">Monday – Friday</p>
+                    <p className="text-foreground">Monday – Saturday</p>
                     <p className="mt-1 text-muted-foreground">5:00 AM – 10:00 PM</p>
                   </div>
                 </div>
