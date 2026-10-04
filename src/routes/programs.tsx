@@ -13,17 +13,17 @@ import {
 export const Route = createFileRoute("/programs")({
   head: () => ({
     meta: [
-      { title: "Programs — Prakrithi Yoga Studio" },
+      { title: "Programs — Prakrithi Yoga & Nutrition" },
       {
         name: "description",
         content:
-          "Explore beginner yoga, online women’s group classes, breathwork, and personal yoga care in Coimbatore.",
+          "Explore beginner yoga, online women's group classes, breathwork, personal yoga care, and nutrition guidance in Coimbatore.",
       },
-      { property: "og:title", content: "Programs — Prakrithi Yoga Studio" },
+      { property: "og:title", content: "Programs — Prakrithi Yoga & Nutrition" },
       {
         property: "og:description",
         content:
-          "Explore beginner yoga, online women’s group classes, breathwork, and personal yoga care in Coimbatore.",
+          "Explore beginner yoga, online women's group classes, breathwork, personal yoga care, and nutrition guidance in Coimbatore.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -44,13 +44,13 @@ function ProgramsPage() {
             <Reveal>
               <p className="eyebrow text-primary">Prakrithi / Programs</p>
               <h1 className="mt-6 max-w-4xl display-serif text-5xl leading-[0.9] sm:text-7xl md:text-[9rem] md:leading-[0.8]">
-                Find your <em className="text-primary">practice.</em>
+                Nourish body & <em className="text-primary">mind.</em>
               </h1>
             </Reveal>
             <Reveal>
               <p className="max-w-sm text-sm leading-7 text-background/60">
-                A considered collection of classes for wherever you are in your practice — from your
-                very first breath to your deepest flow.
+                A considered collection of yoga classes and personal nutrition guidance — from your
+                very first breath to your deepest nourishment.
               </p>
             </Reveal>
           </div>
