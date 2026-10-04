@@ -5,3 +5,5 @@
 - [x] Add working journal details with distinct imagery
 - [x] Refine all mobile sections and remove repeated imagery
 - [x] Validate mobile, tablet, desktop, links, and errors
+- [x] Update the studio email and Monday–Saturday working days
+- [x] Add practice detail popups with standard-class WhatsApp joining
